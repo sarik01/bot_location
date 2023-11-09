@@ -3,9 +3,11 @@ import enum
 
 import logging
 import os
+from typing import Tuple
 
+import numpy as np
 from sqlalchemy import Column, Integer, VARCHAR, Float, DATE, \
-    create_engine  # type: ignore
+    create_engine, Index, ForeignKey  # type: ignore
 from sqlalchemy.dialects.mysql import TEXT
 from sqlalchemy.exc import ProgrammingError
 from sqlalchemy.orm import relationship, sessionmaker, Session, RelationshipProperty, declarative_base  # type: ignore
@@ -36,13 +38,14 @@ class Post(BaseModel):
     latitude = Column(Float, nullable=False)
     longitude = Column(Float, nullable=False)
     address = Column(TEXT, nullable=False)
-    username = Column(VARCHAR(120))
-    fullname = Column(VARCHAR(32))
     group_name = Column(VARCHAR(50))
-    date = Column(DATE, default=datetime.datetime.now().date())
+    date = Column(DATE, default=datetime.datetime.now().date(), index=True)
     time = Column(VARCHAR(50), default=datetime.datetime.now().time().strftime("%H:%M:%S"))
 
-    # author_id = Column(Integer, ForeignKey('users.user_id'))
+    author_id = Column(Integer, ForeignKey('users.user_id'))
+
+
+date_index = Index('date_index', Post.date)
 
 
 async def create_post(
@@ -50,9 +53,8 @@ async def create_post(
         latitude: float,
         longitude: float,
         address: str,
-        username: str,
-        fullname: str,
-        group_name: str
+        group_name: str,
+        author_id: int
 
 ) -> None:
     async with session_maker() as session:
@@ -61,9 +63,8 @@ async def create_post(
                 latitude=latitude,
                 longitude=longitude,
                 address=address,
-                username=username,
-                fullname=fullname,
-                group_name=group_name
+                group_name=group_name,
+                author_id=author_id
             )
 
             try:
@@ -85,7 +86,7 @@ async def create_post(
 #             return res
 
 
-def create_exl() -> str:
+def create_exl(query, archive: bool = False) -> str:
     """
     Create exl file from Post table
     :return: str
@@ -94,14 +95,11 @@ def create_exl() -> str:
     if not os.path.exists(full_path):
         os.makedirs(full_path)
 
-    file_path = os.path.join(full_path, f'{str(datetime.datetime.now().date())}.xlsx')
     db: str = os.getenv('db')
-    pd.read_sql(
-        f"""SELECT public.posts.fullname,public.posts.username, public.posts.address, public.posts.group_name,
-        public.posts.date, public.posts.time, public.posts.latitude, public.posts.longitude
-        FROM public.posts WHERE public.posts.date = '{str(datetime.datetime.now().date())}'""",
-        create_engine(db))\
-        .drop_duplicates(subset=['address', 'username', 'fullname', 'group_name'])\
+    df = pd.read_sql(
+        query,
+        create_engine(db)) \
+        .drop_duplicates(subset=['address', 'username', 'fullname', 'group_name', 'date']) \
         .rename(columns={'latitude': 'широта',
                          'longitude': 'долгота',
                          'address': 'адрес',
@@ -109,7 +107,22 @@ def create_exl() -> str:
                          'fullname': 'полное имя',
                          'date': 'дата',
                          'time': 'время',
-                         'group_name': 'группа'}) \
-        .to_excel(file_path, index=False)
+                         'group_name': 'группа'}).fillna(value={'широта': 'empty',
+                                                                'долгота': 'empty',
+                                                                'адрес': 'empty',
+                                                                'имя пользователя': 'empty',
+                                                                'полное имя': 'empty',
+                                                                'дата': 'empty',
+                                                                'время': 'empty',
+                                                                'группа': 'empty'
+                                                                })
 
+    if archive:
+        file_path = os.path.join(full_path,
+                                 f'{str(min(df["дата"])) + "-" + datetime.datetime.now().date().strftime("%Y-%m-%d")}.xlsx')
+    else:
+        file_path = os.path.join(full_path, f'{str(datetime.datetime.now().date())}.xlsx')
+    df.to_excel(file_path, index=False)
     return str(file_path).replace('\\', '/')
+
+# date_index.create(bind=async_engine)

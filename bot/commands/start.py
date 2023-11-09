@@ -1,4 +1,6 @@
 import asyncio
+import datetime
+
 from bot.db.post import create_post, create_exl
 from sqlalchemy.orm import sessionmaker
 import aiohttp
@@ -53,20 +55,20 @@ async def location_from_api(lat, lon):
 
 
 async def get_location(message: types.Message, session_maker: sessionmaker):
-    lat = message.location.latitude
-    lon = message.location.longitude
-
-    task = asyncio.create_task(location_from_api(lat, lon))
-    location = await asyncio.gather(task)
-
-    await create_post(latitude=lat,
-                      longitude=lon,
-                      username=message.from_user.username,
-                      fullname=message.from_user.full_name,
-                      session_maker=session_maker,
-                      address=location[0]['display_name'],
-                      group_name=message.chat.full_name)
-    await message.answer(location[0]['display_name'], reply_markup=types.ReplyKeyboardRemove())
+    if message.chat.type == 'group':
+        lat = message.location.latitude
+        lon = message.location.longitude
+        task = asyncio.create_task(location_from_api(lat, lon))
+        location = await asyncio.gather(task)
+        location_address = location[0]['display_name']
+        
+        await create_post(latitude=lat,
+                          longitude=lon,
+                          session_maker=session_maker,
+                          address=location_address,
+                          group_name=message.chat.full_name,
+                          author_id=message.from_user.id)
+        # await message.answer(location_address)
 
 
 async def get_contact(message: types.Message):
@@ -75,11 +77,26 @@ async def get_contact(message: types.Message):
 
 
 async def send_exl(message: types.Message):
-    doc = create_exl()
-    docs = types.FSInputFile(doc)
-    await message.bot.send_document(message.from_user.id, document=docs)
+    if message.chat.type == 'private':
+        query = f"""SELECT public.users.username, public.users.fullname, public.posts.address, public.posts.group_name,
+        public.posts.date as date, public.posts.time, public.posts.latitude, public.posts.longitude
+        FROM public.posts RIGHT JOIN public.users on public.posts.author_id = public.users.user_id
+        AND public.posts.date = '{datetime.datetime.now().date()}'
+        OR public.posts.date IS NULL
+        """
+        doc = create_exl(query)
+        docs = types.FSInputFile(doc)
+        await message.bot.send_document(message.from_user.id, document=docs)
 
-    # await message.answer_location(latitude=41.305106, longitude=69.27248)
+
+async def send_archive_exl(message: types.Message):
+    if message.chat.type == 'private':
+        query = """SELECT public.users.username, public.users.fullname, public.posts.address, public.posts.group_name,
+        public.posts.date, public.posts.time, public.posts.latitude, public.posts.longitude
+        FROM public.posts FULL JOIN public.users on public.posts.author_id = public.users.user_id """
+        doc = create_exl(query, archive=True)
+        docs = types.FSInputFile(doc)
+        await message.bot.send_document(message.from_user.id, document=docs)
 
 #
 # # FSM

@@ -31,7 +31,8 @@ class RegisterCheck(BaseMiddleware):
                 else:
                     user = User(
                         user_id=event.from_user.id,
-                        username=event.from_user.username
+                        username=event.from_user.username,
+                        fullname=event.from_user.full_name
                     )
 
                     await session.merge(user)

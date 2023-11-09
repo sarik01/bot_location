@@ -4,7 +4,7 @@ from aiogram import Router
 from aiogram.filters import Command
 
 from bot.commands.callback_data import TestCallbackData
-from bot.commands.start import (start, get_location, get_contact, send_exl,
+from bot.commands.start import (start, get_location, get_contact, send_exl, send_archive_exl
                                 )
 from bot.commands.bot_commands import bot_commands
 from aiogram.types import BotCommand
@@ -17,12 +17,13 @@ from bot.middlewares.register_check import RegisterCheck
 def register_user_commands(router: Router) -> None:
     router.message.register(start, Command(commands=['start']))
     router.message.register(help_command, Command(commands=['help']))
-    router.message.register(start,  F.text == 'Start')
+    router.message.register(start, F.text == 'Start')
     router.message.register(help_func, F.text == 'Pomosh')
     router.message.register(settings_command, F.text == 'settings')
     router.message.register(get_location, F.location)
     router.message.register(get_contact, F.contact)
     router.message.register(send_exl, Command(commands=['get']))
+    router.message.register(send_archive_exl, Command(commands=['archive']))
     # router.message.register(menu_posts, F.text == 'post')
     #
     # #FSM
@@ -36,6 +37,6 @@ def register_user_commands(router: Router) -> None:
     # router.callback_query.register(clear_call_help_func, F.data == 'clear')
     router.callback_query.register(settings_callback, TestCallbackData.filter())
 
-    #middleware
+    # middleware
     router.message.middleware(RegisterCheck())
     router.callback_query.middleware(RegisterCheck())
