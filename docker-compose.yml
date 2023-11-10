@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  aiogram3:
+    build:
+      context: .
+    volumes:
+      - .:/aiogram3
+    environment:
+      - DB_HOST=database
+      - DB_NAME=aiogram3
+      - DB_USER=postgres
+      - DB_PASS=123456
+      - DB_PORT=5432
+    command: >
+      sh  -c "python main.py"
+
+    restart: always
+    depends_on:
+      - database
+
+  database:
+    image: postgres:14.6-alpine
+    environment:
+      - POSTGRES_DB=aiogram3
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+    ports:
+      - "127.0.0.1:5455:5432"
+    volumes:
+      - aiogram3:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7.0.5-alpine
+    hostname: redis
+    ports:
+      - 16379:6379
+
+volumes:
+  aiogram3:

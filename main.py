@@ -7,9 +7,10 @@ from aiogram.fsm.storage.redis import RedisStorage
 from aioredis import Redis
 
 from bot.config import token
-from commands import register_user_commands, BotCommand, bot_commands
+from bot.commands import register_user_commands, BotCommand, bot_commands
 
-from db import create_async_engine, get_session_maker
+from bot.db import create_async_engine, get_session_maker, BaseModel
+from bot.db.engine import proceed_schemas
 
 
 async def main() -> None:
@@ -20,7 +21,7 @@ async def main() -> None:
         cmd_for_bot.append(BotCommand(command=cmd[0], description=cmd[1]))
 
     redis = Redis(
-        host=os.getenv('REDIS_HOST') or '127.0.0.1',
+        host=os.getenv('REDIS_HOST') or 'redis',
         password=os.getenv('REDIS_PASSWORD') or None,
         username=os.getenv('REDIS_USER') or None,
     )
@@ -37,6 +38,8 @@ async def main() -> None:
 
     async_engine = create_async_engine(postgres_url)
     session_maker = get_session_maker(async_engine)
+
+    await proceed_schemas(async_engine, BaseModel.metadata)
 
     await dp.start_polling(bot, session_maker=session_maker)
 
