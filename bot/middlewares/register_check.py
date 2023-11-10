@@ -36,9 +36,8 @@ class RegisterCheck(BaseMiddleware):
                     )
 
                     await session.merge(user)
-                    if isinstance(event, Message):
-                        await event.answer('Ti uspeshno zaregistrirovan!')
-                    else:
-                        await event.message.answer('Ti uspeshno zaregistrirovan!')
 
         return await handler(event, data)
+
+
+

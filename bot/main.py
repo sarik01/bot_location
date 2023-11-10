@@ -5,7 +5,6 @@ import os
 from aiogram import Dispatcher, Bot
 from aiogram.fsm.storage.redis import RedisStorage
 from aioredis import Redis
-# from sqlalchemy import URL
 
 from bot.config import token
 from commands import register_user_commands, BotCommand, bot_commands
@@ -34,21 +33,10 @@ async def main() -> None:
     await bot.set_my_commands(commands=cmd_for_bot)
     register_user_commands(dp)
 
-    # postgres_url = URL.create(
-    #     'postgresql+asyncpg',
-    #     username=os.environ.get('db_user'),
-    #     host='localhost',
-    #     port=os.getenv('db_port'),
-    #     password=os.getenv('db_pass'),
-    #     database=os.getenv('db_name')
-    # )
-
     postgres_url = os.getenv('db_async')
 
     async_engine = create_async_engine(postgres_url)
     session_maker = get_session_maker(async_engine)
-
-    # await proceed_schemas(async_engine, BaseModel.metadata)
 
     await dp.start_polling(bot, session_maker=session_maker)
 

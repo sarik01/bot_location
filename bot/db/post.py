@@ -1,11 +1,6 @@
 import datetime
-import enum
-
 import logging
 import os
-from typing import Tuple
-
-import numpy as np
 from sqlalchemy import Column, Integer, VARCHAR, Float, DATE, \
     create_engine, Index, ForeignKey  # type: ignore
 from sqlalchemy.dialects.mysql import TEXT
@@ -13,18 +8,6 @@ from sqlalchemy.exc import ProgrammingError
 from sqlalchemy.orm import relationship, sessionmaker, Session, RelationshipProperty, declarative_base  # type: ignore
 import pandas as pd
 from bot.db.base import BaseModel
-
-
-class PRType(enum.Enum):
-    """
-        Типы раскрутки
-    """
-    NONE = 0  # не установлен
-    CLICKS = 1  # переходы по ссылке
-    PUBLICATIONS = 2  # публикации
-
-
-Base_post = declarative_base()
 
 
 class Post(BaseModel):
@@ -77,15 +60,6 @@ async def create_post(
                 return None
 
 
-# async def get_post(post_id: int, session_maker: sessionmaker) -> Post:
-#     async with session_maker() as session:
-#         async with session.begin():
-#             res = await session.execute(
-#                 select(Post).where(Post.id == post_id, Post.created == datetime.datetime.date()))
-#             res: res.scalars()
-#             return res
-
-
 def create_exl(query, archive: bool = False) -> str:
     """
     Create exl file from Post table
@@ -116,13 +90,11 @@ def create_exl(query, archive: bool = False) -> str:
                                                                 'время': 'empty',
                                                                 'группа': 'empty'
                                                                 })
-
+    date: str = datetime.datetime.now().date().strftime("%Y-%m-%d")
     if archive:
         file_path = os.path.join(full_path,
-                                 f'{str(min(df["дата"])) + "-" + datetime.datetime.now().date().strftime("%Y-%m-%d")}.xlsx')
+                                 f'{str(min(df["дата"])) + " -- " + date}.xlsx')
     else:
-        file_path = os.path.join(full_path, f'{str(datetime.datetime.now().date())}.xlsx')
+        file_path = os.path.join(full_path, f'{date}.xlsx')
     df.to_excel(file_path, index=False)
     return str(file_path).replace('\\', '/')
-
-# date_index.create(bind=async_engine)

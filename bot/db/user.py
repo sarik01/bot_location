@@ -1,6 +1,9 @@
 import datetime
+from typing import Union
 
-from sqlalchemy import Column, VARCHAR, BigInteger, Date, select, Integer, ForeignKey
+from aiogram import types
+from sqlalchemy import Column, VARCHAR, BigInteger, Date, select, CursorResult
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import sessionmaker, selectinload, relationship
 from .base import BaseModel
 
@@ -19,9 +22,41 @@ class User(BaseModel):
     created = Column(Date, default=datetime.datetime.now())
     updated = Column(Date, onupdate=datetime.datetime.now())
 
-
     def __str__(self) -> str:
         return f"<User: {self.user_id}>"
+
+
+async def create_user(user_id: int, username: str, full_name: str, first_name: str,
+                      session_maker: sessionmaker, message: Union[types.Message, types.ChatMemberUpdated]) -> None:
+    """
+
+    :param user_id:
+    :param username:
+    :param full_name:
+    :param first_name:
+    :param session_maker:
+    :param message:
+    :return:
+    """
+    async with session_maker() as session:
+        async with session.begin():
+            session: AsyncSession
+            result = await session.execute(select(User).where(User.user_id == user_id))
+            result: CursorResult
+            user = result.one_or_none()
+
+            if user is not None:
+                pass
+            else:
+                user = User(
+                    user_id=user_id,
+                    username=username,
+                    fullname=full_name
+                )
+
+                await session.merge(user)
+    await message.answer(f"<b>Hi, {first_name}!</b>",
+                         parse_mode="HTML")
 
 
 async def get_user(user_id: int, session: sessionmaker) -> User:
@@ -38,7 +73,4 @@ async def get_user(user_id: int, session: sessionmaker) -> User:
                 select(User).filter(User.user_id == user_id).options(selectinload(User.posts)))
             res = result.scalar()
 
-            print(res.user_id)
     return res
-
-
