@@ -4,7 +4,7 @@
 import asyncio
 import datetime
 from aiogram.types import ChatMemberUpdated
-from bot.commands.utils import location_from_api, do_query
+from bot.commands.utils import location_from_api, do_query, allowed_users
 from bot.db.post import create_post
 from sqlalchemy.orm import sessionmaker
 from aiogram import types
@@ -21,7 +21,7 @@ async def on_chat_member_updated(message: types.Message, session_maker: sessionm
     for new__member in message.new_chat_members:
 
         if new__member.id == message.bot.id:
-            if message.from_user.id == 201537190:
+            if message.from_user.id in allowed_users:
                 # Бот был добавлен в группу
                 chat_id = message.chat.id
                 await message.bot.send_message(chat_id, "Спасибо за добавление меня в группу!")
@@ -67,13 +67,13 @@ async def get_location(message: types.Message, session_maker: sessionmaker) -> N
         task = asyncio.create_task(location_from_api(lat, lon))
         location = await asyncio.gather(task)
         location_address = location[0]['display_name']
-
+        print(datetime.datetime.now())
         await create_post(latitude=lat,
                           longitude=lon,
                           session_maker=session_maker,
                           address=location_address,
                           group_name=message.chat.full_name,
-                          author_id=message.from_user.id)
+                          author_id=message.from_user.id,)
 
 
 async def send_exl(message: types.Message) -> None:

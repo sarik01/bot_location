@@ -1,4 +1,4 @@
-FROM python:3.10.13
+FROM python:3.10.12
 
 SHELL ["/bin/bash", "-c"]
 
@@ -10,7 +10,6 @@ RUN apt update && apt -qy install gcc libjpeg-dev libxslt-dev \
     libpq-dev libmariadb-dev libmariadb-dev-compat gettext cron openssh-client flake8 locales vim
 
 RUN pip install --upgrade pip
-
 
 COPY requirements.txt /temp/requirements.txt
 COPY . /aiogram3

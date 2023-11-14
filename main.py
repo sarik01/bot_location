@@ -21,7 +21,7 @@ async def main() -> None:
         cmd_for_bot.append(BotCommand(command=cmd[0], description=cmd[1]))
 
     redis = Redis(
-        host=os.getenv('REDIS_HOST') or 'redis',
+        host=os.getenv('REDIS_HOST') or '127.0.0.1',
         password=os.getenv('REDIS_PASSWORD') or None,
         username=os.getenv('REDIS_USER') or None,
     )

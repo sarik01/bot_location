@@ -10,6 +10,13 @@ import pandas as pd
 from bot.db.base import BaseModel
 
 
+def get_time(utc, date=True):
+    time = utc - datetime.timedelta(hours=8)
+    if date:
+        return time.date()
+    return time.time().strftime("%H:%M:%S")
+
+
 class Post(BaseModel):
     __table_args__ = {'extend_existing': True}
 
@@ -22,8 +29,8 @@ class Post(BaseModel):
     longitude = Column(Float, nullable=False)
     address = Column(TEXT, nullable=False)
     group_name = Column(VARCHAR(50))
-    date = Column(DATE, default=datetime.datetime.now().date(), index=True)
-    time = Column(VARCHAR(50), default=datetime.datetime.now().time().strftime("%H:%M:%S"))
+    date = Column(DATE, index=True)
+    time = Column(VARCHAR(50))
 
     author_id = Column(Integer, ForeignKey('users.user_id'))
 
@@ -37,7 +44,7 @@ async def create_post(
         longitude: float,
         address: str,
         group_name: str,
-        author_id: int
+        author_id: int,
 
 ) -> None:
     async with session_maker() as session:
@@ -47,7 +54,9 @@ async def create_post(
                 longitude=longitude,
                 address=address,
                 group_name=group_name,
-                author_id=author_id
+                author_id=author_id,
+                date=get_time(utc=datetime.datetime.utcnow()),
+                time=get_time(utc=datetime.datetime.utcnow(), date=False)
             )
 
             try:

@@ -3,6 +3,8 @@ from aiogram import types
 
 from bot.db.post import create_exl
 
+allowed_users = [201537190, 559736787, 2121025774]
+
 
 async def location_from_api(lat, lon) -> dict:
     """
@@ -20,7 +22,7 @@ async def location_from_api(lat, lon) -> dict:
 
 
 async def do_query(query, message: types.Message, archive: bool):
-    if message.chat.type == 'private':
+    if message.chat.type == 'private' and message.from_user.id in allowed_users:
         doc = create_exl(query, archive)
         docs = types.FSInputFile(doc)
 

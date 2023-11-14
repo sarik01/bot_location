@@ -20,6 +20,8 @@ services:
       - database
       - redis
 
+
+
   database:
     image: postgres:14.6-alpine
     environment:
@@ -28,12 +30,14 @@ services:
       - POSTGRES_PASSWORD=123456
     ports:
       - "127.0.0.1:5455:5432"
+    restart: always
     volumes:
       - aiogram3:/var/lib/postgresql/data
 
   redis:
     image: redis:7.0.5-alpine
     hostname: redis
+    restart: always
     ports:
       - 16379:6379
 
