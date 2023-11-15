@@ -2,7 +2,7 @@ import datetime
 import logging
 import os
 from sqlalchemy import Column, Integer, VARCHAR, Float, DATE, \
-    create_engine, Index, ForeignKey  # type: ignore
+    create_engine, Index, ForeignKey, BigInteger  # type: ignore
 from sqlalchemy.dialects.mysql import TEXT
 from sqlalchemy.exc import ProgrammingError
 from sqlalchemy.orm import relationship, sessionmaker, Session, RelationshipProperty, declarative_base  # type: ignore
@@ -32,7 +32,7 @@ class Post(BaseModel):
     date = Column(DATE, index=True)
     time = Column(VARCHAR(50))
 
-    author_id = Column(Integer, ForeignKey('users.user_id'))
+    author_id = Column(BigInteger, ForeignKey('users.user_id'))
 
 
 date_index = Index('date_index', Post.date)
