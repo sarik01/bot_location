@@ -46,6 +46,7 @@ async def create_post(
         group_name: str,
         author_id: int,
 
+
 ) -> None:
     async with session_maker() as session:
         async with session.begin():
@@ -95,7 +96,7 @@ def create_exl(query, archive: bool = False) -> str:
                                                                 'адрес': 'empty',
                                                                 'имя пользователя': 'empty',
                                                                 'полное имя': 'empty',
-                                                                'дата': 'empty',
+                                                                'дата': datetime.datetime.now().date().strftime("%Y-%m-%d"),
                                                                 'время': 'empty',
                                                                 'группа': 'empty'
                                                                 })

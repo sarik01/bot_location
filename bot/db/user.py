@@ -19,6 +19,7 @@ class User(BaseModel):
     username = Column(VARCHAR(120), nullable=True)
     fullname = Column(VARCHAR(32))
     posts = relationship('bot.db.post.Post', backref="author")
+    group_name = Column(VARCHAR(50))
     created = Column(Date, default=datetime.datetime.now())
     updated = Column(Date, onupdate=datetime.datetime.now())
 
@@ -26,7 +27,7 @@ class User(BaseModel):
         return f"<User: {self.user_id}>"
 
 
-async def create_user(user_id: int, username: str, full_name: str, first_name: str,
+async def create_user(user_id: int, username: str, full_name: str, first_name: str, group_name: str,
                       session_maker: sessionmaker, message: Union[types.Message, types.ChatMemberUpdated]) -> None:
     """
 
@@ -35,6 +36,7 @@ async def create_user(user_id: int, username: str, full_name: str, first_name: s
     :param full_name:
     :param first_name:
     :param session_maker:
+    :param group_name:
     :param message:
     :return:
     """
@@ -51,12 +53,13 @@ async def create_user(user_id: int, username: str, full_name: str, first_name: s
                 user = User(
                     user_id=user_id,
                     username=username,
-                    fullname=full_name
+                    fullname=full_name,
+                    group_name=group_name
                 )
 
                 await session.merge(user)
-    await message.answer(f"<b>Hi, {first_name}!</b>",
-                         parse_mode="HTML")
+                await message.answer(f"<b>Hi, {first_name}!</b>",
+                                     parse_mode="HTML")
 
 
 async def get_user(user_id: int, session: sessionmaker) -> User:
