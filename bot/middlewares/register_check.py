@@ -24,11 +24,12 @@ class RegisterCheck(BaseMiddleware):
             session: AsyncSession
             result = await session.execute(select(User).where(User.user_id == event.from_user.id))
             result: CursorResult
-            user = result.scalar_one_or_none()
+            user: User = result.scalar_one_or_none()
 
             if user is not None:
-                user.group_name = event.chat.full_name
-                await session.commit()
+                if user.group_name is None:
+                    user.group_name = event.chat.full_name
+                    await session.commit()
             else:
                 user = User(
                     user_id=event.from_user.id,
