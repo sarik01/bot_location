@@ -14,7 +14,11 @@ from bot.db.engine import proceed_schemas
 
 
 async def main() -> None:
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(filename='logger.log',
+                        filemode='a',
+                        format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                        datefmt='%H:%M:%S',
+                        level=logging.DEBUG)
 
     cmd_for_bot = []
     for cmd in bot_commands:
