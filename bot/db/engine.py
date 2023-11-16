@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession
 
 
 def create_async_engine(url: Union[URL, str]) -> AsyncEngine:
-    return _create_async_engine(url=url, echo=False, pool_pre_ping=True)
+    return _create_async_engine(url=url, echo=True, pool_pre_ping=True)
 
 
 async def proceed_schemas(engine: AsyncEngine, MetaData) -> None:

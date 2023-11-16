@@ -27,9 +27,10 @@ class RegisterCheck(BaseMiddleware):
             user: User = result.scalar_one_or_none()
 
             if user is not None:
-                if user.group_name is None:
-                    user.group_name = event.chat.full_name
-                    await session.commit()
+                # if user.group_name is None:
+                user.group_name = event.chat.full_name
+                user.fullname = event.from_user.full_name
+                await session.commit()
             else:
                 user = User(
                     user_id=event.from_user.id,
