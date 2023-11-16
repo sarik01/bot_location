@@ -69,7 +69,6 @@ async def get_location(message: types.Message, session_maker: sessionmaker) -> N
         task = asyncio.create_task(location_from_api(lat, lon))
         location = await asyncio.gather(task)
         location_address = location[0]['display_name']
-        print(datetime.datetime.now())
         await create_post(latitude=lat,
                           longitude=lon,
                           session_maker=session_maker,
