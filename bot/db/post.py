@@ -11,7 +11,7 @@ from bot.db.base import BaseModel
 
 
 def get_time(utc, date=True):
-    time = utc - datetime.timedelta(hours=8)
+    time = utc + datetime.timedelta(hours=5)
     if date:
         return time.date()
     return time.time().strftime("%H:%M:%S")
