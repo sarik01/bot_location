@@ -2,7 +2,7 @@ import datetime
 from typing import Union
 
 from aiogram import types
-from sqlalchemy import Column, VARCHAR, BigInteger, Date, select, CursorResult
+from sqlalchemy import Column, VARCHAR, BigInteger, Date, select, CursorResult, Boolean
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import sessionmaker, selectinload, relationship
 from .base import BaseModel
@@ -20,6 +20,7 @@ class User(BaseModel):
     fullname = Column(VARCHAR(32))
     posts = relationship('bot.db.post.Post', backref="author")
     group_name = Column(VARCHAR(50))
+    left = Column(Boolean)
     created = Column(Date, default=datetime.datetime.now())
     updated = Column(Date, onupdate=datetime.datetime.now())
 
@@ -62,7 +63,7 @@ async def create_user(user_id: int, username: str, full_name: str, first_name: s
                                      parse_mode="HTML")
 
 
-async def get_user(user_id: int, session: sessionmaker) -> User:
+async def get_user(user_id: int, session: sessionmaker) -> None:
     """
 
     :param user_id:
@@ -71,9 +72,11 @@ async def get_user(user_id: int, session: sessionmaker) -> User:
     """
 
     async with session() as session:
-        async with session.begin():
-            result = await session.execute(
-                select(User).filter(User.user_id == user_id).options(selectinload(User.posts)))
-            res = result.scalar()
+        result = await session.execute(
+            select(User).filter(User.user_id == user_id))
+        user: User = result.scalar()
+        print('ddddddd')
+        user.left = True
 
-    return res
+        await session.commit()
+

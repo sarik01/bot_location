@@ -6,7 +6,7 @@ from aiogram.utils.chat_action import ChatActionMiddleware
 
 from bot.commands.callback_data import TestCallbackData
 from bot.commands.handlers import (start, get_location, send_exl, send_archive_exl, new_member,
-                                   on_chat_member_updated
+                                   on_chat_member_updated, left_member
                                    )
 from bot.commands.bot_commands import bot_commands
 from aiogram.types import BotCommand
@@ -23,6 +23,7 @@ def register_user_commands(router: Router) -> None:
                             flags={'chat_action': 'upload_document'})
     router.chat_member.register(new_member, ChatMemberUpdatedFilter(IS_NOT_MEMBER >> IS_MEMBER))
     router.message.register(on_chat_member_updated, F.new_chat_members)
+    router.message.register(left_member, F.left_chat_member)
 
     # middleware
     router.message.middleware(RegisterCheck())

@@ -8,7 +8,7 @@ from bot.commands.utils import location_from_api, do_query, allowed_users
 from bot.db.post import create_post
 from sqlalchemy.orm import sessionmaker
 from aiogram import types
-from bot.db.user import create_user
+from bot.db.user import create_user, get_user
 
 
 async def on_chat_member_updated(message: types.Message, session_maker: sessionmaker) -> None:
@@ -18,6 +18,7 @@ async def on_chat_member_updated(message: types.Message, session_maker: sessionm
     :param session_maker:
     :return:
     """
+
     for new__member in message.new_chat_members:
 
         if new__member.id == message.bot.id:
@@ -33,6 +34,11 @@ async def on_chat_member_updated(message: types.Message, session_maker: sessionm
                               first_name=new__member.first_name, session_maker=session_maker, message=message,
                               group_name=message.chat.full_name)
 
+
+async def left_member(message: types.Message, session_maker: sessionmaker) -> None:
+    print('ssssss')
+    print(message.left_chat_member.id)
+    await get_user(user_id=message.left_chat_member.id, session=session_maker)
 
 async def new_member(event: ChatMemberUpdated, session_maker: sessionmaker) -> None:
     """
@@ -89,7 +95,7 @@ async def send_exl(message: types.Message) -> None:
     public.posts.date as date, public.posts.time, public.posts.latitude, public.posts.longitude
     FROM public.posts RIGHT JOIN public.users on public.posts.author_id = public.users.user_id
     AND public.posts.date = '{datetime.datetime.now().date()}'
-    OR public.posts.date IS NULL
+    WHERE public.users.left is NULL
     """
     await do_query(query=query, message=message, archive=False)
 
