@@ -30,13 +30,14 @@ class RegisterCheck(BaseMiddleware):
                 # if user.group_name is None:
                 user.group_name = event.chat.full_name
                 user.fullname = event.from_user.full_name
+                user.left = None
                 await session.commit()
             else:
                 user = User(
                     user_id=event.from_user.id,
                     username=event.from_user.username,
                     fullname=event.from_user.full_name,
-                    group_name=event.chat.full_name
+                    group_name=event.chat.full_name,
                 )
 
                 await session.merge(user)

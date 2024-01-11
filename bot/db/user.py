@@ -46,10 +46,11 @@ async def create_user(user_id: int, username: str, full_name: str, first_name: s
             session: AsyncSession
             result = await session.execute(select(User).where(User.user_id == user_id))
             result: CursorResult
-            user = result.one_or_none()
+            user = result.scalar()
 
             if user is not None:
-                pass
+                user.left = None
+                await session.commit()
             else:
                 user = User(
                     user_id=user_id,
