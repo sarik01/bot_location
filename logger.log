@@ -1,0 +1,984 @@
+07:00:09,85 sqlalchemy.engine.Engine INFO select pg_catalog.version()
+07:00:09,86 sqlalchemy.engine.Engine INFO [raw sql] ()
+07:00:09,88 sqlalchemy.engine.Engine INFO select current_schema()
+07:00:09,88 sqlalchemy.engine.Engine INFO [raw sql] ()
+07:00:09,89 sqlalchemy.engine.Engine INFO show standard_conforming_strings
+07:00:09,89 sqlalchemy.engine.Engine INFO [raw sql] ()
+07:00:09,91 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+07:00:09,93 sqlalchemy.engine.Engine INFO SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+07:00:09,95 sqlalchemy.engine.Engine INFO [generated in 0.00222s] ('users', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+07:00:09,100 sqlalchemy.engine.Engine INFO SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+07:00:09,101 sqlalchemy.engine.Engine INFO [cached since 0.007255s ago] ('posts', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+07:00:09,102 sqlalchemy.engine.Engine INFO COMMIT
+07:00:09,103 aiogram.dispatcher INFO Start polling
+07:00:09,206 aiogram.dispatcher INFO Run polling for bot @GpLocationbot id=6727387766 - 'GP_location'
+07:01:38,770 aiogram.event INFO Update id=253437764 is not handled. Duration 5 ms by bot id=6727387766
+07:03:01,634 aiogram.event INFO Update id=253437765 is not handled. Duration 1 ms by bot id=6727387766
+07:03:05,525 aiogram.event INFO Update id=253437766 is not handled. Duration 3 ms by bot id=6727387766
+07:08:40,56 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+07:08:40,62 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+07:08:40,62 sqlalchemy.engine.Engine INFO [generated in 0.00048s] (559736787,)
+07:08:40,65 sqlalchemy.engine.Engine INFO COMMIT
+07:08:40,236 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=559736787 via bot id=6727387766
+07:08:40,236 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=559736787 via bot 6727387766 (already sent actions 0)
+07:08:40,728 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=559736787 via bot id=6727387766
+07:08:40,729 aiogram.event INFO Update id=253437767 is handled. Duration 676 ms by bot id=6727387766
+07:09:35,56 aiogram.event INFO Update id=253437768 is not handled. Duration 5 ms by bot id=6727387766
+07:11:23,744 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+07:11:23,745 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+07:11:23,746 sqlalchemy.engine.Engine INFO [cached since 163.7s ago] (5095687664,)
+07:11:23,748 sqlalchemy.engine.Engine INFO COMMIT
+07:11:23,750 aiogram.utils.chat_action DEBUG Started chat action 'record_voice' sender in chat_id=-1001909118602 via bot id=6727387766
+07:11:23,792 aiogram.utils.chat_action DEBUG Sent chat action 'record_voice' to chat_id=-1001909118602 via bot 6727387766 (already sent actions 0)
+07:11:28,797 aiogram.utils.chat_action DEBUG Sent chat action 'record_voice' to chat_id=-1001909118602 via bot 6727387766 (already sent actions 1)
+07:11:31,799 aiogram.utils.chat_action DEBUG Finished chat action 'record_voice' sender in chat_id=-1001909118602 via bot id=6727387766
+07:11:31,802 aiogram.event INFO Update id=253437769 is not handled. Duration 8061 ms by bot id=6727387766
+07:11:31,804 aiogram.event ERROR Cause exception while process update id=253437769 by bot id=6727387766
+ClientConnectorError: Cannot connect to host nominatim.openstreetmap.org:443 ssl:default [Temporary failure in name resolution]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/aiohttp/connector.py", line 1155, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "/usr/local/lib/python3.10/site-packages/aiohttp/connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "/usr/local/lib/python3.10/site-packages/aiohttp/resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "/usr/local/lib/python3.10/asyncio/base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/local/lib/python3.10/socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 308, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 157, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 27, in __call__
+    return await handler(event, data)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 41, in __call__
+    return await handler(event, data)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 42, in call
+    return await wrapped()
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 275, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 111, in _wrapped
+    return await self._propagate_event(
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 136, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/aiogram3/bot/middlewares/register_check.py", line 44, in __call__
+    return await handler(event, data)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/utils/chat_action.py", line 356, in __call__
+    return await handler(event, data)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 42, in call
+    return await wrapped()
+  File "/aiogram3/bot/commands/handlers.py", line 70, in get_location
+    location = await asyncio.gather(task)
+  File "/aiogram3/bot/commands/utils.py", line 18, in location_from_api
+    async with session.get(url, allow_redirects=True) as response:
+  File "/usr/local/lib/python3.10/site-packages/aiohttp/client.py", line 1167, in __aenter__
+    self._resp = await self._coro
+  File "/usr/local/lib/python3.10/site-packages/aiohttp/client.py", line 562, in _request
+    conn = await self._connector.connect(
+  File "/usr/local/lib/python3.10/site-packages/aiohttp/connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "/usr/local/lib/python3.10/site-packages/aiohttp/connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "/usr/local/lib/python3.10/site-packages/aiohttp/connector.py", line 1169, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host nominatim.openstreetmap.org:443 ssl:default [Temporary failure in name resolution]
+07:13:08,532 aiogram.event INFO Update id=253437770 is not handled. Duration 5 ms by bot id=6727387766
+07:14:23,292 aiogram.event INFO Update id=253437771 is not handled. Duration 4 ms by bot id=6727387766
+07:21:43,923 aiogram.event INFO Update id=253437772 is not handled. Duration 2 ms by bot id=6727387766
+07:21:50,933 aiogram.event INFO Update id=253437773 is not handled. Duration 1 ms by bot id=6727387766
+07:22:48,548 aiogram.event INFO Update id=253437774 is not handled. Duration 1 ms by bot id=6727387766
+07:25:19,556 aiogram.event INFO Update id=253437775 is not handled. Duration 4 ms by bot id=6727387766
+07:25:26,617 aiogram.event INFO Update id=253437776 is not handled. Duration 2 ms by bot id=6727387766
+07:25:43,144 aiogram.event INFO Update id=253437777 is not handled. Duration 1 ms by bot id=6727387766
+07:26:49,267 aiogram.event INFO Update id=253437778 is not handled. Duration 4 ms by bot id=6727387766
+07:27:05,404 aiogram.event INFO Update id=253437779 is not handled. Duration 5 ms by bot id=6727387766
+07:28:43,607 aiogram.event INFO Update id=253437780 is not handled. Duration 3 ms by bot id=6727387766
+07:28:57,881 aiogram.event INFO Update id=253437781 is not handled. Duration 5 ms by bot id=6727387766
+07:29:44,68 aiogram.event INFO Update id=253437782 is not handled. Duration 1 ms by bot id=6727387766
+07:29:56,696 aiogram.event INFO Update id=253437783 is not handled. Duration 6 ms by bot id=6727387766
+07:29:59,807 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+07:29:59,808 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+07:29:59,809 sqlalchemy.engine.Engine INFO [cached since 1280s ago] (201537190,)
+07:29:59,813 sqlalchemy.engine.Engine INFO UPDATE users SET group_name=$1::VARCHAR, updated=$2::DATE WHERE users.user_id = $3::BIGINT
+07:29:59,814 sqlalchemy.engine.Engine INFO [generated in 0.00083s] ('test3', datetime.datetime(2023, 11, 16, 7, 0, 8, 300189), 201537190)
+07:29:59,816 sqlalchemy.engine.Engine INFO COMMIT
+07:29:59,820 aiogram.utils.chat_action DEBUG Started chat action 'typing' sender in chat_id=-4051477994 via bot id=6727387766
+07:29:59,822 aiogram.utils.chat_action DEBUG Sent chat action 'typing' to chat_id=-4051477994 via bot 6727387766 (already sent actions 0)
+07:30:00,141 aiogram.utils.chat_action DEBUG Finished chat action 'typing' sender in chat_id=-4051477994 via bot id=6727387766
+07:30:00,141 aiogram.event INFO Update id=253437784 is handled. Duration 338 ms by bot id=6727387766
+07:30:12,342 aiogram.event INFO Update id=253437785 is not handled. Duration 4 ms by bot id=6727387766
+07:30:15,950 aiogram.event INFO Update id=253437786 is not handled. Duration 1 ms by bot id=6727387766
+07:30:16,54 aiogram.event INFO Update id=253437787 is not handled. Duration 6 ms by bot id=6727387766
+07:30:19,568 aiogram.event INFO Update id=253437788 is not handled. Duration 2 ms by bot id=6727387766
+07:30:29,326 aiogram.event INFO Update id=253437789 is not handled. Duration 1 ms by bot id=6727387766
+07:30:34,728 aiogram.event INFO Update id=253437790 is not handled. Duration 4 ms by bot id=6727387766
+07:31:16,346 aiogram.event INFO Update id=253437791 is not handled. Duration 1 ms by bot id=6727387766
+07:31:30,456 aiogram.event INFO Update id=253437792 is not handled. Duration 6 ms by bot id=6727387766
+07:31:43,899 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+07:31:43,901 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+07:31:43,903 sqlalchemy.engine.Engine INFO [cached since 1384s ago] (201537190,)
+07:31:43,910 sqlalchemy.engine.Engine INFO COMMIT
+07:31:43,914 aiogram.event INFO Update id=253437793 is handled. Duration 22 ms by bot id=6727387766
+07:31:44,1 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+07:31:44,3 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+07:31:44,4 sqlalchemy.engine.Engine INFO [cached since 1384s ago] (201537190,)
+07:31:44,12 sqlalchemy.engine.Engine INFO COMMIT
+07:31:44,18 aiogram.utils.chat_action DEBUG Started chat action 'typing' sender in chat_id=-4051477994 via bot id=6727387766
+07:31:44,19 aiogram.utils.chat_action DEBUG Sent chat action 'typing' to chat_id=-4051477994 via bot 6727387766 (already sent actions 0)
+07:31:44,22 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+07:31:44,23 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+07:31:44,24 sqlalchemy.engine.Engine INFO [cached since 1384s ago] (842040934,)
+07:31:44,30 sqlalchemy.engine.Engine INFO SELECT users.user_id AS users_user_id, users.username AS users_username, users.fullname AS users_fullname, users.group_name AS users_group_name, users.created AS users_created, users.updated AS users_updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+07:31:44,31 sqlalchemy.engine.Engine INFO [generated in 0.00097s] (842040934,)
+07:31:44,447 sqlalchemy.engine.Engine INFO INSERT INTO users (user_id, username, fullname, group_name, created, updated) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::DATE, $6::DATE)
+07:31:44,449 sqlalchemy.engine.Engine INFO [generated in 0.00202s] (842040934, 'Lion1234554321', 'Дамир Акимов', 'test3', datetime.datetime(2023, 11, 16, 7, 0, 8, 300073), None)
+07:31:44,456 sqlalchemy.engine.Engine INFO COMMIT
+07:31:44,465 aiogram.utils.chat_action DEBUG Finished chat action 'typing' sender in chat_id=-4051477994 via bot id=6727387766
+07:31:44,467 aiogram.event INFO Update id=253437794 is handled. Duration 476 ms by bot id=6727387766
+07:31:55,81 aiogram.event INFO Update id=253437795 is not handled. Duration 3 ms by bot id=6727387766
+07:31:55,208 aiogram.event INFO Update id=253437796 is not handled. Duration 2 ms by bot id=6727387766
+07:32:22,489 aiogram.event INFO Update id=253437797 is not handled. Duration 1 ms by bot id=6727387766
+07:32:25,641 aiogram.event INFO Update id=253437798 is not handled. Duration 3 ms by bot id=6727387766
+07:32:40,92 aiogram.event INFO Update id=253437799 is not handled. Duration 1 ms by bot id=6727387766
+07:32:43,64 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+07:32:43,65 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+07:32:43,66 sqlalchemy.engine.Engine INFO [cached since 1443s ago] (201537190,)
+07:32:43,69 sqlalchemy.engine.Engine INFO COMMIT
+07:32:43,72 aiogram.event INFO Update id=253437800 is handled. Duration 12 ms by bot id=6727387766
+07:32:43,159 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+07:32:43,160 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+07:32:43,160 sqlalchemy.engine.Engine INFO [cached since 1443s ago] (201537190,)
+07:32:43,162 sqlalchemy.engine.Engine INFO COMMIT
+07:32:43,164 aiogram.utils.chat_action DEBUG Started chat action 'typing' sender in chat_id=-4051477994 via bot id=6727387766
+07:32:43,165 aiogram.utils.chat_action DEBUG Sent chat action 'typing' to chat_id=-4051477994 via bot 6727387766 (already sent actions 0)
+07:32:43,168 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+07:32:43,168 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+07:32:43,169 sqlalchemy.engine.Engine INFO [cached since 1443s ago] (842040934,)
+07:32:43,171 sqlalchemy.engine.Engine INFO COMMIT
+07:32:43,481 aiogram.utils.chat_action DEBUG Finished chat action 'typing' sender in chat_id=-4051477994 via bot id=6727387766
+07:32:43,484 aiogram.event INFO Update id=253437801 is handled. Duration 328 ms by bot id=6727387766
+07:32:53,380 aiogram.event INFO Update id=253437802 is not handled. Duration 2 ms by bot id=6727387766
+07:32:53,483 aiogram.event INFO Update id=253437803 is not handled. Duration 6 ms by bot id=6727387766
+07:33:32,51 aiogram.event INFO Update id=253437804 is not handled. Duration 5 ms by bot id=6727387766
+07:33:47,892 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+07:33:47,894 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+07:33:47,895 sqlalchemy.engine.Engine INFO [cached since 1508s ago] (201537190,)
+07:33:47,900 sqlalchemy.engine.Engine INFO COMMIT
+07:33:47,905 aiogram.event INFO Update id=253437805 is handled. Duration 21 ms by bot id=6727387766
+07:33:48,7 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+07:33:48,9 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+07:33:48,11 sqlalchemy.engine.Engine INFO [cached since 1508s ago] (201537190,)
+07:33:48,19 sqlalchemy.engine.Engine INFO COMMIT
+07:33:48,23 aiogram.utils.chat_action DEBUG Started chat action 'typing' sender in chat_id=-4051477994 via bot id=6727387766
+07:33:48,25 aiogram.utils.chat_action DEBUG Sent chat action 'typing' to chat_id=-4051477994 via bot 6727387766 (already sent actions 0)
+07:33:48,30 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+07:33:48,33 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+07:33:48,34 sqlalchemy.engine.Engine INFO [cached since 1508s ago] (842040934,)
+07:33:48,41 sqlalchemy.engine.Engine INFO COMMIT
+07:33:49,554 aiogram.utils.chat_action DEBUG Finished chat action 'typing' sender in chat_id=-4051477994 via bot id=6727387766
+07:33:49,556 aiogram.event INFO Update id=253437806 is handled. Duration 1559 ms by bot id=6727387766
+07:33:52,278 aiogram.event INFO Update id=253437807 is not handled. Duration 3 ms by bot id=6727387766
+07:33:56,895 aiogram.event INFO Update id=253437808 is not handled. Duration 5 ms by bot id=6727387766
+07:33:59,205 aiogram.event INFO Update id=253437809 is not handled. Duration 3 ms by bot id=6727387766
+07:33:59,318 aiogram.event INFO Update id=253437810 is not handled. Duration 7 ms by bot id=6727387766
+07:34:08,487 aiogram.event INFO Update id=253437811 is not handled. Duration 5 ms by bot id=6727387766
+07:34:22,726 aiogram.event INFO Update id=253437812 is not handled. Duration 6 ms by bot id=6727387766
+07:34:29,416 aiogram.event INFO Update id=253437813 is not handled. Duration 5 ms by bot id=6727387766
+07:34:35,505 aiogram.event INFO Update id=253437814 is not handled. Duration 6 ms by bot id=6727387766
+07:34:50,886 aiogram.event INFO Update id=253437815 is not handled. Duration 5 ms by bot id=6727387766
+07:35:03,677 aiogram.event INFO Update id=253437816 is not handled. Duration 4 ms by bot id=6727387766
+07:35:11,144 aiogram.event INFO Update id=253437817 is not handled. Duration 3 ms by bot id=6727387766
+07:35:14,46 aiogram.event INFO Update id=253437818 is not handled. Duration 3 ms by bot id=6727387766
+07:36:03,979 aiogram.event INFO Update id=253437819 is not handled. Duration 1 ms by bot id=6727387766
+07:36:23,825 aiogram.event INFO Update id=253437820 is not handled. Duration 1 ms by bot id=6727387766
+07:37:25,868 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+07:37:25,870 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+07:37:25,872 sqlalchemy.engine.Engine INFO [cached since 1726s ago] (559736787,)
+07:37:25,881 sqlalchemy.engine.Engine INFO UPDATE users SET group_name=$1::VARCHAR, updated=$2::DATE WHERE users.user_id = $3::BIGINT
+07:37:25,882 sqlalchemy.engine.Engine INFO [cached since 446.1s ago] ('GP Сурхандарья', datetime.datetime(2023, 11, 16, 7, 0, 8, 300189), 559736787)
+07:37:25,885 sqlalchemy.engine.Engine INFO COMMIT
+07:37:25,890 aiogram.utils.chat_action DEBUG Started chat action 'record_voice' sender in chat_id=-1002135586017 via bot id=6727387766
+07:37:25,891 aiogram.utils.chat_action DEBUG Sent chat action 'record_voice' to chat_id=-1002135586017 via bot 6727387766 (already sent actions 0)
+07:37:26,286 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+07:37:26,294 sqlalchemy.engine.Engine INFO INSERT INTO posts (latitude, longitude, address, group_name, date, time, author_id) VALUES ($1::FLOAT, $2::FLOAT, $3::VARCHAR, $4::VARCHAR, $5::DATE, $6::VARCHAR, $7::BIGINT) RETURNING posts.id
+07:37:26,295 sqlalchemy.engine.Engine INFO [generated in 0.00171s] (41.278981, 69.245084, "2, Muqimiy ko'chasi, Rakat mahallasi, Yakkasaroy Tumani, Toshkent, 100000, Oʻzbekiston", 'GP Сурхандарья', datetime.date(2023, 11, 16), '12:37:26', 559736787)
+07:37:26,305 sqlalchemy.engine.Engine INFO COMMIT
+07:37:26,309 aiogram.utils.chat_action DEBUG Finished chat action 'record_voice' sender in chat_id=-1002135586017 via bot id=6727387766
+07:37:26,310 aiogram.event INFO Update id=253437821 is handled. Duration 453 ms by bot id=6727387766
+07:37:35,866 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+07:37:35,868 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+07:37:35,870 sqlalchemy.engine.Engine INFO [cached since 1736s ago] (559736787,)
+07:37:35,876 sqlalchemy.engine.Engine INFO COMMIT
+07:37:35,878 aiogram.utils.chat_action DEBUG Started chat action 'record_voice' sender in chat_id=-1002135586017 via bot id=6727387766
+07:37:35,880 aiogram.utils.chat_action DEBUG Sent chat action 'record_voice' to chat_id=-1002135586017 via bot 6727387766 (already sent actions 0)
+07:37:38,628 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+07:37:38,630 sqlalchemy.engine.Engine INFO INSERT INTO posts (latitude, longitude, address, group_name, date, time, author_id) VALUES ($1::FLOAT, $2::FLOAT, $3::VARCHAR, $4::VARCHAR, $5::DATE, $6::VARCHAR, $7::BIGINT) RETURNING posts.id
+07:37:38,632 sqlalchemy.engine.Engine INFO [cached since 12.34s ago] (41.278981, 69.245084, "2, Muqimiy ko'chasi, Rakat mahallasi, Yakkasaroy Tumani, Toshkent, 100000, Oʻzbekiston", 'GP Сурхандарья', datetime.date(2023, 11, 16), '12:37:38', 559736787)
+07:37:38,637 sqlalchemy.engine.Engine INFO COMMIT
+07:37:38,646 aiogram.utils.chat_action DEBUG Finished chat action 'record_voice' sender in chat_id=-1002135586017 via bot id=6727387766
+07:37:38,647 aiogram.event INFO Update id=253437822 is handled. Duration 2790 ms by bot id=6727387766
+07:38:10,430 aiogram.event INFO Update id=253437823 is not handled. Duration 1 ms by bot id=6727387766
+07:38:29,832 aiogram.event INFO Update id=253437824 is not handled. Duration 2 ms by bot id=6727387766
+07:38:33,164 aiogram.event INFO Update id=253437825 is not handled. Duration 2 ms by bot id=6727387766
+07:38:33,929 aiogram.event INFO Update id=253437826 is not handled. Duration 4 ms by bot id=6727387766
+07:38:40,874 aiogram.event INFO Update id=253437827 is not handled. Duration 1 ms by bot id=6727387766
+07:38:44,873 aiogram.event INFO Update id=253437828 is not handled. Duration 4 ms by bot id=6727387766
+07:38:55,821 aiogram.event INFO Update id=253437829 is not handled. Duration 4 ms by bot id=6727387766
+07:39:02,994 aiogram.event INFO Update id=253437830 is not handled. Duration 5 ms by bot id=6727387766
+07:39:17,894 aiogram.event INFO Update id=253437831 is not handled. Duration 6 ms by bot id=6727387766
+07:39:30,547 aiogram.event INFO Update id=253437832 is not handled. Duration 1 ms by bot id=6727387766
+07:39:45,399 aiogram.event INFO Update id=253437833 is not handled. Duration 3 ms by bot id=6727387766
+07:39:56,689 aiogram.event INFO Update id=253437834 is not handled. Duration 4 ms by bot id=6727387766
+07:40:31,116 aiogram.event INFO Update id=253437835 is not handled. Duration 5 ms by bot id=6727387766
+07:40:56,590 aiogram.event INFO Update id=253437836 is not handled. Duration 2 ms by bot id=6727387766
+07:40:57,66 aiogram.event INFO Update id=253437837 is not handled. Duration 1 ms by bot id=6727387766
+07:41:03,544 aiogram.event INFO Update id=253437838 is not handled. Duration 1 ms by bot id=6727387766
+07:41:12,968 aiogram.event INFO Update id=253437839 is not handled. Duration 2 ms by bot id=6727387766
+07:41:35,437 aiogram.event INFO Update id=253437840 is not handled. Duration 4 ms by bot id=6727387766
+07:41:47,420 aiogram.event INFO Update id=253437841 is not handled. Duration 4 ms by bot id=6727387766
+07:41:49,782 aiogram.event INFO Update id=253437842 is not handled. Duration 4 ms by bot id=6727387766
+07:42:03,986 aiogram.event INFO Update id=253437843 is not handled. Duration 5 ms by bot id=6727387766
+07:42:14,174 aiogram.event INFO Update id=253437844 is not handled. Duration 4 ms by bot id=6727387766
+07:42:31,348 aiogram.event INFO Update id=253437845 is not handled. Duration 1 ms by bot id=6727387766
+07:42:31,451 aiogram.event INFO Update id=253437846 is not handled. Duration 2 ms by bot id=6727387766
+07:42:38,505 aiogram.event INFO Update id=253437847 is not handled. Duration 1 ms by bot id=6727387766
+07:43:06,73 aiogram.event INFO Update id=253437848 is not handled. Duration 1 ms by bot id=6727387766
+07:43:27,83 aiogram.event INFO Update id=253437849 is not handled. Duration 2 ms by bot id=6727387766
+07:43:34,368 aiogram.event INFO Update id=253437850 is not handled. Duration 6 ms by bot id=6727387766
+07:43:34,679 aiogram.event INFO Update id=253437851 is not handled. Duration 6 ms by bot id=6727387766
+07:43:44,614 aiogram.event INFO Update id=253437852 is not handled. Duration 5 ms by bot id=6727387766
+07:43:57,74 aiogram.event INFO Update id=253437853 is not handled. Duration 3 ms by bot id=6727387766
+07:45:18,607 aiogram.event INFO Update id=253437854 is not handled. Duration 7 ms by bot id=6727387766
+07:45:49,177 aiogram.event INFO Update id=253437855 is not handled. Duration 1 ms by bot id=6727387766
+07:46:32,166 aiogram.event INFO Update id=253437856 is not handled. Duration 3 ms by bot id=6727387766
+07:47:16,56 aiogram.event INFO Update id=253437857 is not handled. Duration 3 ms by bot id=6727387766
+07:47:38,624 aiogram.event INFO Update id=253437858 is not handled. Duration 2 ms by bot id=6727387766
+07:47:47,801 aiogram.event INFO Update id=253437859 is not handled. Duration 2 ms by bot id=6727387766
+07:48:07,761 aiogram.event INFO Update id=253437860 is not handled. Duration 3 ms by bot id=6727387766
+07:48:09,901 aiogram.event INFO Update id=253437861 is not handled. Duration 1 ms by bot id=6727387766
+07:49:14,301 aiogram.event INFO Update id=253437862 is not handled. Duration 1 ms by bot id=6727387766
+07:49:14,412 aiogram.event INFO Update id=253437863 is not handled. Duration 4 ms by bot id=6727387766
+07:49:26,755 aiogram.event INFO Update id=253437864 is not handled. Duration 2 ms by bot id=6727387766
+07:50:28,279 aiogram.event INFO Update id=253437865 is not handled. Duration 3 ms by bot id=6727387766
+07:50:32,587 aiogram.event INFO Update id=253437866 is not handled. Duration 1 ms by bot id=6727387766
+07:51:24,575 aiogram.event INFO Update id=253437867 is not handled. Duration 3 ms by bot id=6727387766
+07:51:32,670 aiogram.event INFO Update id=253437868 is not handled. Duration 1 ms by bot id=6727387766
+07:52:47,25 aiogram.event INFO Update id=253437869 is not handled. Duration 5 ms by bot id=6727387766
+08:02:24,969 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+08:02:24,971 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+08:02:24,972 sqlalchemy.engine.Engine INFO [cached since 3225s ago] (5095687664,)
+08:02:24,974 sqlalchemy.engine.Engine INFO COMMIT
+08:02:24,975 aiogram.utils.chat_action DEBUG Started chat action 'record_voice' sender in chat_id=-1001909118602 via bot id=6727387766
+08:02:24,975 aiogram.utils.chat_action DEBUG Sent chat action 'record_voice' to chat_id=-1001909118602 via bot 6727387766 (already sent actions 0)
+08:02:25,811 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+08:02:25,813 sqlalchemy.engine.Engine INFO INSERT INTO posts (latitude, longitude, address, group_name, date, time, author_id) VALUES ($1::FLOAT, $2::FLOAT, $3::VARCHAR, $4::VARCHAR, $5::DATE, $6::VARCHAR, $7::BIGINT) RETURNING posts.id
+08:02:25,815 sqlalchemy.engine.Engine INFO [cached since 1500s ago] (41.024672, 71.641063, 'Онкологическая больница, Afrosiyob ko`chasi, Yangi Namangan tumani, Namangan shahri, Namangan Viloyati, 160103, Oʻzbekiston', 'GP Наманган', datetime.date(2023, 11, 16), '13:02:25', 5095687664)
+08:02:25,823 sqlalchemy.engine.Engine INFO COMMIT
+08:02:25,832 aiogram.utils.chat_action DEBUG Finished chat action 'record_voice' sender in chat_id=-1001909118602 via bot id=6727387766
+08:02:25,833 aiogram.event INFO Update id=253437870 is handled. Duration 866 ms by bot id=6727387766
+08:03:27,795 aiogram.event INFO Update id=253437871 is not handled. Duration 6 ms by bot id=6727387766
+08:03:54,114 aiogram.event INFO Update id=253437872 is not handled. Duration 5 ms by bot id=6727387766
+08:05:09,473 aiogram.event INFO Update id=253437873 is not handled. Duration 1 ms by bot id=6727387766
+08:06:58,618 aiogram.event INFO Update id=253437874 is not handled. Duration 2 ms by bot id=6727387766
+08:07:06,744 aiogram.event INFO Update id=253437875 is not handled. Duration 3 ms by bot id=6727387766
+08:07:20,495 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+08:07:20,496 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+08:07:20,496 sqlalchemy.engine.Engine INFO [cached since 3520s ago] (559736787,)
+08:07:20,498 sqlalchemy.engine.Engine INFO UPDATE users SET group_name=$1::VARCHAR, updated=$2::DATE WHERE users.user_id = $3::BIGINT
+08:07:20,499 sqlalchemy.engine.Engine INFO [cached since 2241s ago] ('Шохбозбек Абдуфаттоев', datetime.datetime(2023, 11, 16, 7, 0, 8, 300189), 559736787)
+08:07:20,500 sqlalchemy.engine.Engine INFO COMMIT
+08:07:20,570 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=559736787 via bot id=6727387766
+08:07:20,571 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=559736787 via bot 6727387766 (already sent actions 0)
+08:07:22,46 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=559736787 via bot id=6727387766
+08:07:22,46 aiogram.event INFO Update id=253437876 is handled. Duration 1554 ms by bot id=6727387766
+08:11:54,567 aiogram.event INFO Update id=253437877 is not handled. Duration 2 ms by bot id=6727387766
+08:11:54,670 aiogram.event INFO Update id=253437878 is not handled. Duration 2 ms by bot id=6727387766
+08:11:59,786 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+08:11:59,789 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+08:11:59,791 sqlalchemy.engine.Engine INFO [cached since 3800s ago] (2121025774,)
+08:11:59,797 sqlalchemy.engine.Engine INFO COMMIT
+08:11:59,801 aiogram.event INFO Update id=253437879 is handled. Duration 24 ms by bot id=6727387766
+08:11:59,880 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+08:11:59,880 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+08:11:59,881 sqlalchemy.engine.Engine INFO [cached since 3800s ago] (2121025774,)
+08:11:59,882 sqlalchemy.engine.Engine INFO UPDATE users SET group_name=$1::VARCHAR, updated=$2::DATE WHERE users.user_id = $3::BIGINT
+08:11:59,882 sqlalchemy.engine.Engine INFO [cached since 2520s ago] ('GP Самарканд', datetime.datetime(2023, 11, 16, 7, 0, 8, 300189), 2121025774)
+08:11:59,883 sqlalchemy.engine.Engine INFO COMMIT
+08:11:59,887 aiogram.utils.chat_action DEBUG Started chat action 'typing' sender in chat_id=-1002098290463 via bot id=6727387766
+08:11:59,887 aiogram.utils.chat_action DEBUG Sent chat action 'typing' to chat_id=-1002098290463 via bot 6727387766 (already sent actions 0)
+08:11:59,888 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+08:11:59,889 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+08:11:59,889 sqlalchemy.engine.Engine INFO [cached since 3800s ago] (5257149976,)
+08:11:59,891 sqlalchemy.engine.Engine INFO SELECT users.user_id AS users_user_id, users.username AS users_username, users.fullname AS users_fullname, users.group_name AS users_group_name, users.created AS users_created, users.updated AS users_updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+08:11:59,891 sqlalchemy.engine.Engine INFO [cached since 2416s ago] (5257149976,)
+08:12:00,377 sqlalchemy.engine.Engine INFO INSERT INTO users (user_id, username, fullname, group_name, created, updated) VALUES ($1::BIGINT, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::DATE, $6::DATE)
+08:12:00,379 sqlalchemy.engine.Engine INFO [cached since 2416s ago] (5257149976, None, 'Islomov Sindor', 'GP Самарканд', datetime.datetime(2023, 11, 16, 7, 0, 8, 300073), None)
+08:12:00,384 sqlalchemy.engine.Engine INFO COMMIT
+08:12:00,392 aiogram.utils.chat_action DEBUG Finished chat action 'typing' sender in chat_id=-1002098290463 via bot id=6727387766
+08:12:00,393 aiogram.event INFO Update id=253437880 is handled. Duration 515 ms by bot id=6727387766
+08:12:14,863 aiogram.event INFO Update id=253437881 is not handled. Duration 4 ms by bot id=6727387766
+08:18:00,298 aiogram.event INFO Update id=253437882 is not handled. Duration 7 ms by bot id=6727387766
+08:18:26,204 aiogram.event INFO Update id=253437883 is not handled. Duration 4 ms by bot id=6727387766
+08:23:37,245 aiogram.event INFO Update id=253437884 is not handled. Duration 5 ms by bot id=6727387766
+08:34:27,926 aiogram.event INFO Update id=253437885 is not handled. Duration 1 ms by bot id=6727387766
+08:39:02,91 aiogram.event INFO Update id=253437886 is not handled. Duration 6 ms by bot id=6727387766
+08:42:23,572 aiogram.event INFO Update id=253437887 is not handled. Duration 5 ms by bot id=6727387766
+08:47:26,954 aiogram.event INFO Update id=253437888 is not handled. Duration 12 ms by bot id=6727387766
+08:57:21,482 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+08:57:21,485 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+08:57:21,487 sqlalchemy.engine.Engine INFO [cached since 6521s ago] (5750646666,)
+08:57:21,494 sqlalchemy.engine.Engine INFO COMMIT
+08:57:21,498 aiogram.utils.chat_action DEBUG Started chat action 'record_voice' sender in chat_id=-1002135586017 via bot id=6727387766
+08:57:21,500 aiogram.utils.chat_action DEBUG Sent chat action 'record_voice' to chat_id=-1002135586017 via bot 6727387766 (already sent actions 0)
+08:57:21,970 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+08:57:21,973 sqlalchemy.engine.Engine INFO INSERT INTO posts (latitude, longitude, address, group_name, date, time, author_id) VALUES ($1::FLOAT, $2::FLOAT, $3::VARCHAR, $4::VARCHAR, $5::DATE, $6::VARCHAR, $7::BIGINT) RETURNING posts.id
+08:57:21,975 sqlalchemy.engine.Engine INFO [cached since 4796s ago] (37.862187, 67.384249, '4P100, Bandixon, Bandixon Tumani, Surxondaryo Viloyati, Oʻzbekiston', 'GP Сурхандарья', datetime.date(2023, 11, 16), '13:57:21', 5750646666)
+08:57:21,981 sqlalchemy.engine.Engine INFO COMMIT
+08:57:21,989 aiogram.utils.chat_action DEBUG Finished chat action 'record_voice' sender in chat_id=-1002135586017 via bot id=6727387766
+08:57:21,991 aiogram.event INFO Update id=253437889 is handled. Duration 520 ms by bot id=6727387766
+08:58:06,336 aiogram.event INFO Update id=253437890 is not handled. Duration 6 ms by bot id=6727387766
+08:58:18,284 aiogram.event INFO Update id=253437891 is not handled. Duration 7 ms by bot id=6727387766
+08:58:40,33 aiogram.event INFO Update id=253437892 is not handled. Duration 7 ms by bot id=6727387766
+09:01:47,550 aiogram.event INFO Update id=253437893 is not handled. Duration 4 ms by bot id=6727387766
+09:02:02,910 aiogram.event INFO Update id=253437894 is not handled. Duration 6 ms by bot id=6727387766
+09:02:14,948 aiogram.event INFO Update id=253437895 is not handled. Duration 6 ms by bot id=6727387766
+09:03:06,478 aiogram.event INFO Update id=253437896 is not handled. Duration 6 ms by bot id=6727387766
+09:04:18,782 aiogram.event INFO Update id=253437897 is not handled. Duration 6 ms by bot id=6727387766
+09:12:35,876 aiogram.event INFO Update id=253437898 is not handled. Duration 2 ms by bot id=6727387766
+09:15:24,637 aiogram.event INFO Update id=253437899 is not handled. Duration 6 ms by bot id=6727387766
+09:18:24,515 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+09:18:24,517 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+09:18:24,519 sqlalchemy.engine.Engine INFO [cached since 7785s ago] (201537190,)
+09:18:24,527 sqlalchemy.engine.Engine INFO UPDATE users SET group_name=$1::VARCHAR, updated=$2::DATE WHERE users.user_id = $3::BIGINT
+09:18:24,528 sqlalchemy.engine.Engine INFO [cached since 6505s ago] ('小龙', datetime.datetime(2023, 11, 16, 7, 0, 8, 300189), 201537190)
+09:18:24,532 sqlalchemy.engine.Engine INFO COMMIT
+09:18:24,636 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+09:18:24,637 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+09:18:26,59 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+09:18:26,62 aiogram.event INFO Update id=253437900 is handled. Duration 1558 ms by bot id=6727387766
+09:23:57,36 aiogram.event INFO Update id=253437901 is not handled. Duration 1 ms by bot id=6727387766
+09:29:02,402 aiogram.event INFO Update id=253437902 is not handled. Duration 5 ms by bot id=6727387766
+09:32:31,171 aiogram.event INFO Update id=253437903 is not handled. Duration 6 ms by bot id=6727387766
+09:33:24,746 aiogram.event INFO Update id=253437904 is not handled. Duration 5 ms by bot id=6727387766
+09:35:17,617 aiogram.event INFO Update id=253437905 is not handled. Duration 4 ms by bot id=6727387766
+09:35:30,781 aiogram.event INFO Update id=253437906 is not handled. Duration 5 ms by bot id=6727387766
+09:35:44,98 aiogram.event INFO Update id=253437907 is not handled. Duration 6 ms by bot id=6727387766
+09:44:34,865 aiogram.event INFO Update id=253437908 is not handled. Duration 5 ms by bot id=6727387766
+09:47:13,673 aiogram.event INFO Update id=253437909 is not handled. Duration 5 ms by bot id=6727387766
+09:48:51,454 aiogram.event INFO Update id=253437910 is not handled. Duration 5 ms by bot id=6727387766
+09:52:38,995 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+09:52:38,997 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+09:52:38,999 sqlalchemy.engine.Engine INFO [cached since 9839s ago] (201537190,)
+09:52:39,6 sqlalchemy.engine.Engine INFO COMMIT
+09:52:39,117 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+09:52:39,117 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+09:52:39,582 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+09:52:39,584 aiogram.event INFO Update id=253437911 is handled. Duration 600 ms by bot id=6727387766
+09:52:47,710 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+09:52:47,712 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+09:52:47,713 sqlalchemy.engine.Engine INFO [cached since 9848s ago] (201537190,)
+09:52:47,722 sqlalchemy.engine.Engine INFO COMMIT
+09:52:47,834 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+09:52:47,835 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+09:52:48,20 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+09:52:48,22 aiogram.event INFO Update id=253437912 is handled. Duration 321 ms by bot id=6727387766
+09:53:41,216 aiogram.event INFO Update id=253437913 is not handled. Duration 3 ms by bot id=6727387766
+09:55:40,217 aiogram.event INFO Update id=253437914 is not handled. Duration 2 ms by bot id=6727387766
+09:55:48,110 aiogram.event INFO Update id=253437915 is not handled. Duration 6 ms by bot id=6727387766
+09:57:15,685 aiogram.event INFO Update id=253437916 is not handled. Duration 5 ms by bot id=6727387766
+09:57:30,125 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+09:57:30,126 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+09:57:30,127 sqlalchemy.engine.Engine INFO [cached since 1.013e+04s ago] (201537190,)
+09:57:30,130 sqlalchemy.engine.Engine INFO COMMIT
+09:57:30,203 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+09:57:30,203 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+09:57:30,646 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+09:57:30,647 aiogram.event INFO Update id=253437917 is handled. Duration 526 ms by bot id=6727387766
+09:57:35,981 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+09:57:35,983 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+09:57:35,984 sqlalchemy.engine.Engine INFO [cached since 1.014e+04s ago] (201537190,)
+09:57:35,988 sqlalchemy.engine.Engine INFO COMMIT
+09:57:36,55 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+09:57:36,56 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+09:57:36,233 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+09:57:36,234 aiogram.event INFO Update id=253437918 is handled. Duration 257 ms by bot id=6727387766
+09:57:38,417 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+09:57:38,419 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+09:57:38,420 sqlalchemy.engine.Engine INFO [cached since 1.014e+04s ago] (201537190,)
+09:57:38,430 sqlalchemy.engine.Engine INFO COMMIT
+09:57:38,520 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+09:57:38,521 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+09:57:38,863 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+09:57:38,865 aiogram.event INFO Update id=253437919 is handled. Duration 458 ms by bot id=6727387766
+09:59:29,672 aiogram.event INFO Update id=253437920 is not handled. Duration 6 ms by bot id=6727387766
+10:04:10,176 aiogram.event INFO Update id=253437921 is not handled. Duration 7 ms by bot id=6727387766
+10:04:39,771 aiogram.event INFO Update id=253437922 is not handled. Duration 4 ms by bot id=6727387766
+10:06:44,306 aiogram.event INFO Update id=253437923 is not handled. Duration 5 ms by bot id=6727387766
+10:07:12,47 aiogram.event INFO Update id=253437924 is not handled. Duration 3 ms by bot id=6727387766
+10:16:02,466 aiogram.event INFO Update id=253437925 is not handled. Duration 5 ms by bot id=6727387766
+10:17:49,29 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+10:17:49,30 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+10:17:49,31 sqlalchemy.engine.Engine INFO [cached since 1.135e+04s ago] (201537190,)
+10:17:49,34 sqlalchemy.engine.Engine INFO COMMIT
+10:17:49,37 aiogram.utils.chat_action DEBUG Started chat action 'typing' sender in chat_id=201537190 via bot id=6727387766
+10:17:49,38 aiogram.utils.chat_action DEBUG Sent chat action 'typing' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+10:17:50,505 aiogram.utils.chat_action DEBUG Finished chat action 'typing' sender in chat_id=201537190 via bot id=6727387766
+10:17:50,507 aiogram.event INFO Update id=253437926 is handled. Duration 1488 ms by bot id=6727387766
+10:17:56,848 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+10:17:56,851 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+10:17:56,852 sqlalchemy.engine.Engine INFO [cached since 1.136e+04s ago] (201537190,)
+10:17:56,859 sqlalchemy.engine.Engine INFO COMMIT
+10:17:56,866 aiogram.utils.chat_action DEBUG Started chat action 'typing' sender in chat_id=201537190 via bot id=6727387766
+10:17:56,867 aiogram.utils.chat_action DEBUG Sent chat action 'typing' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+10:17:57,15 aiogram.utils.chat_action DEBUG Finished chat action 'typing' sender in chat_id=201537190 via bot id=6727387766
+10:17:57,17 aiogram.event INFO Update id=253437927 is handled. Duration 177 ms by bot id=6727387766
+10:17:59,366 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+10:17:59,368 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+10:17:59,370 sqlalchemy.engine.Engine INFO [cached since 1.136e+04s ago] (201537190,)
+10:17:59,379 sqlalchemy.engine.Engine INFO COMMIT
+10:17:59,383 aiogram.utils.chat_action DEBUG Started chat action 'typing' sender in chat_id=201537190 via bot id=6727387766
+10:17:59,384 aiogram.utils.chat_action DEBUG Sent chat action 'typing' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+10:17:59,547 aiogram.utils.chat_action DEBUG Finished chat action 'typing' sender in chat_id=201537190 via bot id=6727387766
+10:17:59,548 aiogram.event INFO Update id=253437928 is handled. Duration 190 ms by bot id=6727387766
+10:18:00,977 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+10:18:00,979 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+10:18:00,981 sqlalchemy.engine.Engine INFO [cached since 1.136e+04s ago] (201537190,)
+10:18:00,989 sqlalchemy.engine.Engine INFO COMMIT
+10:18:00,996 aiogram.utils.chat_action DEBUG Started chat action 'typing' sender in chat_id=201537190 via bot id=6727387766
+10:18:00,998 aiogram.utils.chat_action DEBUG Sent chat action 'typing' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+10:18:01,129 aiogram.utils.chat_action DEBUG Finished chat action 'typing' sender in chat_id=201537190 via bot id=6727387766
+10:18:01,131 aiogram.event INFO Update id=253437929 is handled. Duration 162 ms by bot id=6727387766
+10:18:04,750 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+10:18:04,752 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+10:18:04,754 sqlalchemy.engine.Engine INFO [cached since 1.136e+04s ago] (201537190,)
+10:18:04,761 sqlalchemy.engine.Engine INFO COMMIT
+10:18:04,768 aiogram.utils.chat_action DEBUG Started chat action 'typing' sender in chat_id=201537190 via bot id=6727387766
+10:18:04,771 aiogram.utils.chat_action DEBUG Sent chat action 'typing' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+10:18:04,903 aiogram.utils.chat_action DEBUG Finished chat action 'typing' sender in chat_id=201537190 via bot id=6727387766
+10:18:04,905 aiogram.event INFO Update id=253437930 is handled. Duration 163 ms by bot id=6727387766
+10:18:09,98 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+10:18:09,100 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+10:18:09,101 sqlalchemy.engine.Engine INFO [cached since 1.137e+04s ago] (201537190,)
+10:18:09,104 sqlalchemy.engine.Engine INFO COMMIT
+10:18:09,190 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+10:18:09,191 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+10:18:09,468 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+10:18:09,470 aiogram.event INFO Update id=253437931 is handled. Duration 381 ms by bot id=6727387766
+10:18:23,206 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+10:18:23,208 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+10:18:23,210 sqlalchemy.engine.Engine INFO [cached since 1.138e+04s ago] (201537190,)
+10:18:23,218 sqlalchemy.engine.Engine INFO COMMIT
+10:18:23,344 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+10:18:23,345 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+10:18:23,502 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+10:18:23,504 aiogram.event INFO Update id=253437932 is handled. Duration 308 ms by bot id=6727387766
+10:18:40,744 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+10:18:40,746 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+10:18:40,748 sqlalchemy.engine.Engine INFO [cached since 1.14e+04s ago] (201537190,)
+10:18:40,756 sqlalchemy.engine.Engine INFO COMMIT
+10:18:40,765 aiogram.utils.chat_action DEBUG Started chat action 'typing' sender in chat_id=201537190 via bot id=6727387766
+10:18:40,766 aiogram.utils.chat_action DEBUG Sent chat action 'typing' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+10:18:41,188 aiogram.utils.chat_action DEBUG Finished chat action 'typing' sender in chat_id=201537190 via bot id=6727387766
+10:18:41,189 aiogram.event INFO Update id=253437933 is handled. Duration 454 ms by bot id=6727387766
+10:19:27,490 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+10:19:27,492 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+10:19:27,494 sqlalchemy.engine.Engine INFO [cached since 1.145e+04s ago] (201537190,)
+10:19:27,501 sqlalchemy.engine.Engine INFO COMMIT
+10:19:27,616 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+10:19:27,616 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+10:19:28,291 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+10:19:28,293 aiogram.event INFO Update id=253437934 is handled. Duration 812 ms by bot id=6727387766
+10:21:18,197 aiogram.event INFO Update id=253437935 is not handled. Duration 7 ms by bot id=6727387766
+10:23:01,468 aiogram.event INFO Update id=253437936 is not handled. Duration 5 ms by bot id=6727387766
+10:36:20,526 aiogram.event INFO Update id=253437937 is not handled. Duration 6 ms by bot id=6727387766
+10:38:16,798 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+10:38:16,800 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+10:38:16,801 sqlalchemy.engine.Engine INFO [cached since 1.258e+04s ago] (559736787,)
+10:38:16,809 sqlalchemy.engine.Engine INFO COMMIT
+10:38:16,904 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=559736787 via bot id=6727387766
+10:38:16,904 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=559736787 via bot 6727387766 (already sent actions 0)
+10:38:17,458 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=559736787 via bot id=6727387766
+10:38:17,460 aiogram.event INFO Update id=253437938 is handled. Duration 673 ms by bot id=6727387766
+10:38:37,82 aiogram.event INFO Update id=253437939 is not handled. Duration 1 ms by bot id=6727387766
+10:42:41,871 aiogram.event INFO Update id=253437940 is not handled. Duration 6 ms by bot id=6727387766
+10:46:20,9 aiogram.event INFO Update id=253437941 is not handled. Duration 5 ms by bot id=6727387766
+10:47:23,389 aiogram.event INFO Update id=253437942 is not handled. Duration 6 ms by bot id=6727387766
+10:47:32,891 aiogram.event INFO Update id=253437943 is not handled. Duration 6 ms by bot id=6727387766
+10:54:22,534 aiogram.event INFO Update id=253437944 is not handled. Duration 5 ms by bot id=6727387766
+11:09:38,22 aiogram.event INFO Update id=253437945 is not handled. Duration 4 ms by bot id=6727387766
+11:15:29,748 aiogram.event INFO Update id=253437946 is not handled. Duration 3 ms by bot id=6727387766
+11:19:48,156 aiogram.event INFO Update id=253437947 is not handled. Duration 4 ms by bot id=6727387766
+11:32:04,623 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+11:32:04,625 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+11:32:04,627 sqlalchemy.engine.Engine INFO [cached since 1.58e+04s ago] (201537190,)
+11:32:04,635 sqlalchemy.engine.Engine INFO COMMIT
+11:32:04,747 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+11:32:04,747 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+11:32:05,168 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+11:32:05,169 aiogram.event INFO Update id=253437948 is handled. Duration 558 ms by bot id=6727387766
+11:34:13,639 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+11:34:13,641 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+11:34:13,643 sqlalchemy.engine.Engine INFO [cached since 1.593e+04s ago] (201537190,)
+11:34:13,650 sqlalchemy.engine.Engine INFO UPDATE users SET group_name=$1::VARCHAR, updated=$2::DATE WHERE users.user_id = $3::BIGINT
+11:34:13,652 sqlalchemy.engine.Engine INFO [cached since 1.465e+04s ago] ('test3', datetime.datetime(2023, 11, 16, 7, 0, 8, 300189), 201537190)
+11:34:13,656 sqlalchemy.engine.Engine INFO COMMIT
+11:34:13,669 aiogram.utils.chat_action DEBUG Started chat action 'typing' sender in chat_id=-4051477994 via bot id=6727387766
+11:34:13,671 aiogram.utils.chat_action DEBUG Sent chat action 'typing' to chat_id=-4051477994 via bot 6727387766 (already sent actions 0)
+11:34:14,72 aiogram.utils.chat_action DEBUG Finished chat action 'typing' sender in chat_id=-4051477994 via bot id=6727387766
+11:34:14,73 aiogram.event INFO Update id=253437949 is handled. Duration 445 ms by bot id=6727387766
+11:34:59,131 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+11:34:59,132 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+11:34:59,134 sqlalchemy.engine.Engine INFO [cached since 1.598e+04s ago] (201537190,)
+11:34:59,141 sqlalchemy.engine.Engine INFO COMMIT
+11:34:59,143 aiogram.utils.chat_action DEBUG Started chat action 'record_voice' sender in chat_id=-4051477994 via bot id=6727387766
+11:34:59,146 aiogram.utils.chat_action DEBUG Sent chat action 'record_voice' to chat_id=-4051477994 via bot 6727387766 (already sent actions 0)
+11:35:04,151 aiogram.utils.chat_action DEBUG Sent chat action 'record_voice' to chat_id=-4051477994 via bot 6727387766 (already sent actions 1)
+11:35:05,551 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+11:35:05,552 sqlalchemy.engine.Engine INFO INSERT INTO posts (latitude, longitude, address, group_name, date, time, author_id) VALUES ($1::FLOAT, $2::FLOAT, $3::VARCHAR, $4::VARCHAR, $5::DATE, $6::VARCHAR, $7::BIGINT) RETURNING posts.id
+11:35:05,553 sqlalchemy.engine.Engine INFO [cached since 1.426e+04s ago] (41.435362, 69.535302, 'Узбекский государственный университет физической культуры и спорта (УзГосИФК), Sportchilar ko‘chasi, Troitsk, Chirchiq, Toshkent Viloyati, 111700, Oʻzbekiston', 'test3', datetime.date(2023, 11, 16), '16:35:05', 201537190)
+11:35:05,556 sqlalchemy.engine.Engine INFO COMMIT
+11:35:05,560 aiogram.utils.chat_action DEBUG Finished chat action 'record_voice' sender in chat_id=-4051477994 via bot id=6727387766
+11:35:05,561 aiogram.event INFO Update id=253437950 is handled. Duration 6440 ms by bot id=6727387766
+11:35:12,855 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+11:35:12,857 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+11:35:12,858 sqlalchemy.engine.Engine INFO [cached since 1.599e+04s ago] (201537190,)
+11:35:12,866 sqlalchemy.engine.Engine INFO UPDATE users SET group_name=$1::VARCHAR, updated=$2::DATE WHERE users.user_id = $3::BIGINT
+11:35:12,867 sqlalchemy.engine.Engine INFO [cached since 1.471e+04s ago] ('小龙', datetime.datetime(2023, 11, 16, 7, 0, 8, 300189), 201537190)
+11:35:12,870 sqlalchemy.engine.Engine INFO COMMIT
+11:35:12,981 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+11:35:12,982 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+11:35:13,367 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+11:35:13,368 aiogram.event INFO Update id=253437951 is handled. Duration 522 ms by bot id=6727387766
+11:40:42,763 aiogram.event INFO Update id=253437952 is not handled. Duration 7 ms by bot id=6727387766
+11:43:28,578 aiogram.event INFO Update id=253437953 is not handled. Duration 4 ms by bot id=6727387766
+11:54:03,297 aiogram.event INFO Update id=253437954 is not handled. Duration 6 ms by bot id=6727387766
+12:13:31,458 aiogram.event INFO Update id=253437955 is not handled. Duration 5 ms by bot id=6727387766
+12:14:05,650 aiogram.event INFO Update id=253437956 is not handled. Duration 5 ms by bot id=6727387766
+12:14:27,979 aiogram.event INFO Update id=253437957 is not handled. Duration 4 ms by bot id=6727387766
+12:14:40,717 aiogram.event INFO Update id=253437958 is not handled. Duration 5 ms by bot id=6727387766
+12:14:54,480 aiogram.event INFO Update id=253437959 is not handled. Duration 4 ms by bot id=6727387766
+12:15:06,675 aiogram.event INFO Update id=253437960 is not handled. Duration 5 ms by bot id=6727387766
+12:15:17,757 aiogram.event INFO Update id=253437961 is not handled. Duration 5 ms by bot id=6727387766
+12:15:33,556 aiogram.event INFO Update id=253437962 is not handled. Duration 5 ms by bot id=6727387766
+12:15:49,84 aiogram.event INFO Update id=253437963 is not handled. Duration 4 ms by bot id=6727387766
+12:16:02,188 aiogram.event INFO Update id=253437964 is not handled. Duration 4 ms by bot id=6727387766
+12:16:17,399 aiogram.event INFO Update id=253437965 is not handled. Duration 4 ms by bot id=6727387766
+12:16:32,511 aiogram.event INFO Update id=253437966 is not handled. Duration 4 ms by bot id=6727387766
+12:16:42,931 aiogram.event INFO Update id=253437967 is not handled. Duration 4 ms by bot id=6727387766
+12:18:33,680 aiogram.event INFO Update id=253437968 is not handled. Duration 5 ms by bot id=6727387766
+12:19:43,165 aiogram.event INFO Update id=253437969 is not handled. Duration 4 ms by bot id=6727387766
+12:23:11,200 aiogram.event INFO Update id=253437970 is not handled. Duration 3 ms by bot id=6727387766
+12:23:23,797 aiogram.event INFO Update id=253437971 is not handled. Duration 6 ms by bot id=6727387766
+12:23:37,327 aiogram.event INFO Update id=253437972 is not handled. Duration 4 ms by bot id=6727387766
+12:23:53,261 aiogram.event INFO Update id=253437973 is not handled. Duration 4 ms by bot id=6727387766
+12:24:06,825 aiogram.event INFO Update id=253437974 is not handled. Duration 1 ms by bot id=6727387766
+12:24:17,748 aiogram.event INFO Update id=253437975 is not handled. Duration 4 ms by bot id=6727387766
+12:24:28,628 aiogram.event INFO Update id=253437976 is not handled. Duration 6 ms by bot id=6727387766
+12:24:44,182 aiogram.event INFO Update id=253437977 is not handled. Duration 3 ms by bot id=6727387766
+12:25:06,56 aiogram.event INFO Update id=253437978 is not handled. Duration 5 ms by bot id=6727387766
+12:25:17,459 aiogram.event INFO Update id=253437979 is not handled. Duration 4 ms by bot id=6727387766
+12:28:31,328 aiogram.event INFO Update id=253437980 is not handled. Duration 6 ms by bot id=6727387766
+12:28:37,113 aiogram.event INFO Update id=253437981 is not handled. Duration 1 ms by bot id=6727387766
+12:28:41,581 aiogram.event INFO Update id=253437982 is not handled. Duration 6 ms by bot id=6727387766
+12:31:46,199 aiogram.event INFO Update id=253437983 is not handled. Duration 4 ms by bot id=6727387766
+12:42:36,254 aiogram.event INFO Update id=253437984 is not handled. Duration 4 ms by bot id=6727387766
+12:43:56,388 aiogram.event INFO Update id=253437985 is not handled. Duration 5 ms by bot id=6727387766
+12:45:00,905 aiogram.event INFO Update id=253437986 is not handled. Duration 5 ms by bot id=6727387766
+12:47:25,922 aiogram.event INFO Update id=253437987 is not handled. Duration 5 ms by bot id=6727387766
+12:47:47,218 aiogram.event INFO Update id=253437988 is not handled. Duration 5 ms by bot id=6727387766
+12:48:05,246 aiogram.event INFO Update id=253437989 is not handled. Duration 2 ms by bot id=6727387766
+12:48:21,298 aiogram.event INFO Update id=253437990 is not handled. Duration 4 ms by bot id=6727387766
+12:48:34,749 aiogram.event INFO Update id=253437991 is not handled. Duration 6 ms by bot id=6727387766
+12:48:48,851 aiogram.event INFO Update id=253437992 is not handled. Duration 4 ms by bot id=6727387766
+12:49:06,56 aiogram.event INFO Update id=253437993 is not handled. Duration 5 ms by bot id=6727387766
+12:49:24,665 aiogram.event INFO Update id=253437994 is not handled. Duration 4 ms by bot id=6727387766
+12:49:38,973 aiogram.event INFO Update id=253437995 is not handled. Duration 6 ms by bot id=6727387766
+12:49:52,189 aiogram.event INFO Update id=253437996 is not handled. Duration 5 ms by bot id=6727387766
+12:50:05,528 aiogram.event INFO Update id=253437997 is not handled. Duration 5 ms by bot id=6727387766
+12:50:31,30 aiogram.event INFO Update id=253437998 is not handled. Duration 4 ms by bot id=6727387766
+12:50:43,718 aiogram.event INFO Update id=253437999 is not handled. Duration 6 ms by bot id=6727387766
+12:51:01,27 aiogram.event INFO Update id=253438000 is not handled. Duration 4 ms by bot id=6727387766
+12:51:03,399 aiogram.event INFO Update id=253438001 is not handled. Duration 4 ms by bot id=6727387766
+12:51:10,410 aiogram.event INFO Update id=253438002 is not handled. Duration 4 ms by bot id=6727387766
+12:54:30,632 aiogram.event INFO Update id=253438003 is not handled. Duration 1 ms by bot id=6727387766
+12:55:18,309 aiogram.event INFO Update id=253438004 is not handled. Duration 9 ms by bot id=6727387766
+12:55:18,312 aiogram.event INFO Update id=253438005 is not handled. Duration 12 ms by bot id=6727387766
+13:01:22,397 aiogram.event INFO Update id=253438006 is not handled. Duration 3 ms by bot id=6727387766
+13:04:13,120 aiogram.event INFO Update id=253438007 is not handled. Duration 3 ms by bot id=6727387766
+13:12:00,938 aiogram.event INFO Update id=253438008 is not handled. Duration 1 ms by bot id=6727387766
+13:15:00,459 aiogram.event INFO Update id=253438009 is not handled. Duration 5 ms by bot id=6727387766
+13:19:57,915 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+13:19:57,917 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+13:19:57,918 sqlalchemy.engine.Engine INFO [cached since 2.228e+04s ago] (201537190,)
+13:19:57,927 sqlalchemy.engine.Engine INFO COMMIT
+13:19:58,33 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+13:19:58,33 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+13:19:59,616 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+13:19:59,618 aiogram.event INFO Update id=253438010 is handled. Duration 1714 ms by bot id=6727387766
+13:20:04,57 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+13:20:04,59 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+13:20:04,61 sqlalchemy.engine.Engine INFO [cached since 2.228e+04s ago] (201537190,)
+13:20:04,69 sqlalchemy.engine.Engine INFO COMMIT
+13:20:04,168 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+13:20:04,169 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+13:20:04,491 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+13:20:04,492 aiogram.event INFO Update id=253438011 is handled. Duration 445 ms by bot id=6727387766
+13:20:20,228 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+13:20:20,228 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+13:20:20,229 sqlalchemy.engine.Engine INFO [cached since 2.23e+04s ago] (201537190,)
+13:20:20,230 sqlalchemy.engine.Engine INFO COMMIT
+13:20:20,284 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+13:20:20,284 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+13:20:20,796 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+13:20:20,798 aiogram.event INFO Update id=253438012 is handled. Duration 573 ms by bot id=6727387766
+13:20:29,422 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+13:20:29,424 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+13:20:29,425 sqlalchemy.engine.Engine INFO [cached since 2.231e+04s ago] (201537190,)
+13:20:29,434 sqlalchemy.engine.Engine INFO COMMIT
+13:20:29,548 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+13:20:29,549 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+13:20:29,705 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+13:20:29,707 aiogram.event INFO Update id=253438013 is handled. Duration 295 ms by bot id=6727387766
+13:20:37,155 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+13:20:37,157 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+13:20:37,159 sqlalchemy.engine.Engine INFO [cached since 2.232e+04s ago] (201537190,)
+13:20:37,167 sqlalchemy.engine.Engine INFO COMMIT
+13:20:37,174 aiogram.utils.chat_action DEBUG Started chat action 'typing' sender in chat_id=201537190 via bot id=6727387766
+13:20:37,176 aiogram.utils.chat_action DEBUG Sent chat action 'typing' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+13:20:37,308 aiogram.utils.chat_action DEBUG Finished chat action 'typing' sender in chat_id=201537190 via bot id=6727387766
+13:20:37,310 aiogram.event INFO Update id=253438014 is handled. Duration 163 ms by bot id=6727387766
+13:21:21,311 aiogram.event INFO Update id=253438015 is not handled. Duration 6 ms by bot id=6727387766
+13:23:49,402 aiogram.event INFO Update id=253438016 is not handled. Duration 10 ms by bot id=6727387766
+13:23:49,404 aiogram.event INFO Update id=253438017 is not handled. Duration 12 ms by bot id=6727387766
+13:24:21,36 aiogram.event INFO Update id=253438018 is not handled. Duration 5 ms by bot id=6727387766
+13:24:31,266 aiogram.event INFO Update id=253438019 is not handled. Duration 4 ms by bot id=6727387766
+13:30:36,512 aiogram.event INFO Update id=253438020 is not handled. Duration 6 ms by bot id=6727387766
+13:34:27,959 aiogram.event INFO Update id=253438021 is not handled. Duration 7 ms by bot id=6727387766
+13:51:56,462 aiogram.event INFO Update id=253438022 is not handled. Duration 4 ms by bot id=6727387766
+14:13:52,347 aiogram.event INFO Update id=253438023 is not handled. Duration 4 ms by bot id=6727387766
+14:16:13,971 aiogram.event INFO Update id=253438024 is not handled. Duration 4 ms by bot id=6727387766
+14:19:18,681 aiogram.event INFO Update id=253438025 is not handled. Duration 4 ms by bot id=6727387766
+14:21:18,913 aiogram.event INFO Update id=253438026 is not handled. Duration 5 ms by bot id=6727387766
+14:24:27,508 aiogram.event INFO Update id=253438027 is not handled. Duration 4 ms by bot id=6727387766
+14:25:39,14 aiogram.event INFO Update id=253438028 is not handled. Duration 6 ms by bot id=6727387766
+14:25:39,15 aiogram.event INFO Update id=253438029 is not handled. Duration 7 ms by bot id=6727387766
+14:30:25,827 aiogram.event INFO Update id=253438030 is not handled. Duration 3 ms by bot id=6727387766
+14:33:28,477 aiogram.event INFO Update id=253438031 is not handled. Duration 6 ms by bot id=6727387766
+14:39:39,338 aiogram.event INFO Update id=253438032 is not handled. Duration 4 ms by bot id=6727387766
+14:41:38,748 aiogram.event INFO Update id=253438033 is not handled. Duration 4 ms by bot id=6727387766
+14:55:44,871 aiogram.event INFO Update id=253438034 is not handled. Duration 3 ms by bot id=6727387766
+14:55:54,326 aiogram.event INFO Update id=253438035 is not handled. Duration 6 ms by bot id=6727387766
+14:59:53,517 aiogram.event INFO Update id=253438036 is not handled. Duration 5 ms by bot id=6727387766
+15:01:16,621 aiogram.event INFO Update id=253438037 is not handled. Duration 4 ms by bot id=6727387766
+15:02:18,817 aiogram.event INFO Update id=253438038 is not handled. Duration 6 ms by bot id=6727387766
+15:04:44,544 aiogram.event INFO Update id=253438039 is not handled. Duration 6 ms by bot id=6727387766
+15:05:57,694 aiogram.event INFO Update id=253438040 is not handled. Duration 3 ms by bot id=6727387766
+15:08:55,45 aiogram.event INFO Update id=253438041 is not handled. Duration 7 ms by bot id=6727387766
+15:31:40,428 aiogram.event INFO Update id=253438042 is not handled. Duration 5 ms by bot id=6727387766
+16:02:16,244 aiogram.event INFO Update id=253438043 is not handled. Duration 6 ms by bot id=6727387766
+16:14:10,895 aiogram.event INFO Update id=253438044 is not handled. Duration 4 ms by bot id=6727387766
+16:15:16,216 aiogram.event INFO Update id=253438045 is not handled. Duration 4 ms by bot id=6727387766
+16:22:41,453 aiogram.event INFO Update id=253438046 is not handled. Duration 5 ms by bot id=6727387766
+16:26:00,449 aiogram.event INFO Update id=253438047 is not handled. Duration 6 ms by bot id=6727387766
+16:26:41,232 aiogram.event INFO Update id=253438048 is not handled. Duration 4 ms by bot id=6727387766
+16:33:37,108 aiogram.event INFO Update id=253438049 is not handled. Duration 5 ms by bot id=6727387766
+16:38:14,294 aiogram.event INFO Update id=253438050 is not handled. Duration 4 ms by bot id=6727387766
+17:40:06,764 aiogram.event INFO Update id=253438051 is not handled. Duration 4 ms by bot id=6727387766
+18:02:09,382 aiogram.event INFO Update id=253438052 is not handled. Duration 4 ms by bot id=6727387766
+18:02:48,711 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+18:02:48,713 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+18:02:48,715 sqlalchemy.engine.Engine INFO [cached since 3.925e+04s ago] (201537190,)
+18:02:48,720 sqlalchemy.engine.Engine INFO COMMIT
+18:02:48,724 aiogram.utils.chat_action DEBUG Started chat action 'typing' sender in chat_id=201537190 via bot id=6727387766
+18:02:48,725 aiogram.utils.chat_action DEBUG Sent chat action 'typing' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+18:02:49,88 aiogram.utils.chat_action DEBUG Finished chat action 'typing' sender in chat_id=201537190 via bot id=6727387766
+18:02:49,89 aiogram.event INFO Update id=253438053 is handled. Duration 388 ms by bot id=6727387766
+18:02:52,204 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+18:02:52,206 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+18:02:52,207 sqlalchemy.engine.Engine INFO [cached since 3.925e+04s ago] (201537190,)
+18:02:52,217 sqlalchemy.engine.Engine INFO COMMIT
+18:02:52,322 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+18:02:52,322 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+18:02:52,492 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+18:02:52,494 aiogram.event INFO Update id=253438054 is handled. Duration 300 ms by bot id=6727387766
+18:14:06,561 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+18:14:06,564 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+18:14:06,566 sqlalchemy.engine.Engine INFO [cached since 3.993e+04s ago] (201537190,)
+18:14:06,574 sqlalchemy.engine.Engine INFO COMMIT
+18:14:06,675 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+18:14:06,675 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+18:14:07,143 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+18:14:07,145 aiogram.event INFO Update id=253438055 is handled. Duration 594 ms by bot id=6727387766
+18:14:20,331 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+18:14:20,333 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+18:14:20,334 sqlalchemy.engine.Engine INFO [cached since 3.994e+04s ago] (201537190,)
+18:14:20,340 sqlalchemy.engine.Engine INFO COMMIT
+18:14:20,429 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+18:14:20,430 aiogram.utils.chat_action DEBUG Sent chat action 'upload_document' to chat_id=201537190 via bot 6727387766 (already sent actions 0)
+18:14:20,758 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=201537190 via bot id=6727387766
+18:14:20,760 aiogram.event INFO Update id=253438056 is handled. Duration 439 ms by bot id=6727387766
+18:14:48,237 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+18:14:48,239 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+18:14:48,241 sqlalchemy.engine.Engine INFO [cached since 3.997e+04s ago] (201537190,)
+18:14:48,249 sqlalchemy.engine.Engine INFO UPDATE users SET group_name=$1::VARCHAR, updated=$2::DATE WHERE users.user_id = $3::BIGINT
+18:14:48,251 sqlalchemy.engine.Engine INFO [cached since 3.869e+04s ago] ('test3', datetime.datetime(2023, 11, 16, 7, 0, 8, 300189), 201537190)
+18:14:48,253 sqlalchemy.engine.Engine INFO COMMIT
+18:14:48,257 aiogram.utils.chat_action DEBUG Started chat action 'record_voice' sender in chat_id=-4051477994 via bot id=6727387766
+18:14:48,259 aiogram.utils.chat_action DEBUG Sent chat action 'record_voice' to chat_id=-4051477994 via bot 6727387766 (already sent actions 0)
+18:14:53,265 aiogram.utils.chat_action DEBUG Sent chat action 'record_voice' to chat_id=-4051477994 via bot 6727387766 (already sent actions 1)
+18:14:56,265 aiogram.utils.chat_action DEBUG Finished chat action 'record_voice' sender in chat_id=-4051477994 via bot id=6727387766
+18:14:56,267 aiogram.event INFO Update id=253438057 is not handled. Duration 8039 ms by bot id=6727387766
+18:14:56,269 aiogram.event ERROR Cause exception while process update id=253438057 by bot id=6727387766
+ClientConnectorError: Cannot connect to host nominatim.openstreetmap.org:443 ssl:default [Temporary failure in name resolution]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/aiohttp/connector.py", line 1155, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+  File "/usr/local/lib/python3.10/site-packages/aiohttp/connector.py", line 874, in _resolve_host
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "/usr/local/lib/python3.10/site-packages/aiohttp/resolver.py", line 33, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "/usr/local/lib/python3.10/asyncio/base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/local/lib/python3.10/socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 308, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 157, in feed_update
+    response = await self.update.wrap_outer_middleware(
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/error.py", line 25, in __call__
+    return await handler(event, data)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 27, in __call__
+    return await handler(event, data)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/fsm/middleware.py", line 41, in __call__
+    return await handler(event, data)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 42, in call
+    return await wrapped()
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/dispatcher.py", line 275, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 111, in _wrapped
+    return await self._propagate_event(
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/router.py", line 136, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/event/telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+  File "/aiogram3/bot/middlewares/register_check.py", line 44, in __call__
+    return await handler(event, data)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/utils/chat_action.py", line 356, in __call__
+    return await handler(event, data)
+  File "/usr/local/lib/python3.10/site-packages/aiogram/dispatcher/event/handler.py", line 42, in call
+    return await wrapped()
+  File "/aiogram3/bot/commands/handlers.py", line 70, in get_location
+    location = await asyncio.gather(task)
+  File "/aiogram3/bot/commands/utils.py", line 18, in location_from_api
+    async with session.get(url, allow_redirects=True) as response:
+  File "/usr/local/lib/python3.10/site-packages/aiohttp/client.py", line 1167, in __aenter__
+    self._resp = await self._coro
+  File "/usr/local/lib/python3.10/site-packages/aiohttp/client.py", line 562, in _request
+    conn = await self._connector.connect(
+  File "/usr/local/lib/python3.10/site-packages/aiohttp/connector.py", line 540, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "/usr/local/lib/python3.10/site-packages/aiohttp/connector.py", line 901, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "/usr/local/lib/python3.10/site-packages/aiohttp/connector.py", line 1169, in _create_direct_connection
+    raise ClientConnectorError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host nominatim.openstreetmap.org:443 ssl:default [Temporary failure in name resolution]
+18:15:08,416 aiogram.event INFO Update id=253438058 is not handled. Duration 6 ms by bot id=6727387766
+18:15:30,630 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+18:15:30,632 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+18:15:30,634 sqlalchemy.engine.Engine INFO [cached since 4.001e+04s ago] (201537190,)
+18:15:30,644 sqlalchemy.engine.Engine INFO COMMIT
+18:15:30,651 aiogram.utils.chat_action DEBUG Started chat action 'typing' sender in chat_id=-4051477994 via bot id=6727387766
+18:15:30,653 aiogram.utils.chat_action DEBUG Sent chat action 'typing' to chat_id=-4051477994 via bot 6727387766 (already sent actions 0)
+18:15:31,106 aiogram.utils.chat_action DEBUG Finished chat action 'typing' sender in chat_id=-4051477994 via bot id=6727387766
+18:15:31,108 aiogram.event INFO Update id=253438059 is handled. Duration 486 ms by bot id=6727387766
+18:15:34,483 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+18:15:34,483 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+18:15:34,484 sqlalchemy.engine.Engine INFO [cached since 4.002e+04s ago] (201537190,)
+18:15:34,485 sqlalchemy.engine.Engine INFO COMMIT
+18:15:34,486 aiogram.utils.chat_action DEBUG Started chat action 'upload_document' sender in chat_id=-4051477994 via bot id=6727387766
+18:15:34,486 aiogram.utils.chat_action DEBUG Finished chat action 'upload_document' sender in chat_id=-4051477994 via bot id=6727387766
+18:15:34,486 aiogram.event INFO Update id=253438060 is handled. Duration 5 ms by bot id=6727387766
+18:15:38,271 sqlalchemy.engine.Engine INFO BEGIN (implicit)
+18:15:38,273 sqlalchemy.engine.Engine INFO SELECT users.user_id, users.username, users.fullname, users.group_name, users.created, users.updated 
+FROM users 
+WHERE users.user_id = $1::BIGINT
+18:15:38,275 sqlalchemy.engine.Engine INFO [cached since 4.002e+04s ago] (201537190,)
+18:15:38,283 sqlalchemy.engine.Engine INFO COMMIT
+18:15:38,290 aiogram.utils.chat_action DEBUG Started chat action 'typing' sender in chat_id=-4051477994 via bot id=6727387766
+18:15:38,292 aiogram.utils.chat_action DEBUG Sent chat action 'typing' to chat_id=-4051477994 via bot 6727387766 (already sent actions 0)
+18:15:38,426 aiogram.utils.chat_action DEBUG Finished chat action 'typing' sender in chat_id=-4051477994 via bot id=6727387766
+18:15:38,427 aiogram.event INFO Update id=253438061 is handled. Duration 164 ms by bot id=6727387766
+18:19:22,18 aiogram.event INFO Update id=253438062 is not handled. Duration 5 ms by bot id=6727387766
+18:19:46,54 aiogram.event INFO Update id=253438063 is not handled. Duration 4 ms by bot id=6727387766
+18:20:08,202 aiogram.event INFO Update id=253438064 is not handled. Duration 4 ms by bot id=6727387766
+18:20:44,513 aiogram.event INFO Update id=253438065 is not handled. Duration 4 ms by bot id=6727387766
+18:21:17,56 aiogram.event INFO Update id=253438066 is not handled. Duration 4 ms by bot id=6727387766
+18:22:10,282 aiogram.event INFO Update id=253438067 is not handled. Duration 5 ms by bot id=6727387766
+18:22:29,179 aiogram.event INFO Update id=253438068 is not handled. Duration 4 ms by bot id=6727387766
+18:22:47,374 aiogram.event INFO Update id=253438069 is not handled. Duration 4 ms by bot id=6727387766
+18:23:25,628 aiogram.event INFO Update id=253438070 is not handled. Duration 5 ms by bot id=6727387766
+18:23:58,385 aiogram.event INFO Update id=253438071 is not handled. Duration 4 ms by bot id=6727387766
+18:24:36,496 aiogram.event INFO Update id=253438072 is not handled. Duration 5 ms by bot id=6727387766
+18:24:55,578 aiogram.event INFO Update id=253438073 is not handled. Duration 4 ms by bot id=6727387766
+18:25:18,249 aiogram.event INFO Update id=253438074 is not handled. Duration 4 ms by bot id=6727387766
+18:25:41,562 aiogram.event INFO Update id=253438075 is not handled. Duration 4 ms by bot id=6727387766
+18:26:08,998 aiogram.event INFO Update id=253438076 is not handled. Duration 5 ms by bot id=6727387766
+18:26:44,254 aiogram.event INFO Update id=253438077 is not handled. Duration 6 ms by bot id=6727387766
+18:28:52,421 aiogram.event INFO Update id=253438078 is not handled. Duration 1 ms by bot id=6727387766
+18:29:00,338 aiogram.event INFO Update id=253438079 is not handled. Duration 4 ms by bot id=6727387766
+18:29:54,229 aiogram.event INFO Update id=253438080 is not handled. Duration 6 ms by bot id=6727387766
+18:31:31,481 aiogram.event INFO Update id=253438081 is not handled. Duration 2 ms by bot id=6727387766
+18:32:55,432 aiogram.event INFO Update id=253438082 is not handled. Duration 1 ms by bot id=6727387766
+18:32:55,991 aiogram.event INFO Update id=253438083 is not handled. Duration 5 ms by bot id=6727387766
+18:33:05,475 aiogram.event INFO Update id=253438084 is not handled. Duration 4 ms by bot id=6727387766
+18:34:05,294 aiogram.event INFO Update id=253438085 is not handled. Duration 2 ms by bot id=6727387766
+18:34:18,19 aiogram.event INFO Update id=253438086 is not handled. Duration 2 ms by bot id=6727387766
+18:36:06,242 aiogram.event INFO Update id=253438087 is not handled. Duration 4 ms by bot id=6727387766
+18:37:26,541 aiogram.event INFO Update id=253438088 is not handled. Duration 5 ms by bot id=6727387766
+18:39:36,87 aiogram.event INFO Update id=253438089 is not handled. Duration 4 ms by bot id=6727387766
+18:50:05,798 aiogram.event INFO Update id=253438090 is not handled. Duration 4 ms by bot id=6727387766
+18:55:01,446 aiogram.event INFO Update id=253438091 is not handled. Duration 4 ms by bot id=6727387766
+18:55:25,857 aiogram.event INFO Update id=253438092 is not handled. Duration 4 ms by bot id=6727387766
+18:55:47,72 aiogram.event INFO Update id=253438093 is not handled. Duration 4 ms by bot id=6727387766
+18:56:08,5 aiogram.event INFO Update id=253438094 is not handled. Duration 3 ms by bot id=6727387766
+19:26:32,990 aiogram.event INFO Update id=253438095 is not handled. Duration 4 ms by bot id=6727387766
+19:36:29,619 aiogram.event INFO Update id=253438096 is not handled. Duration 2 ms by bot id=6727387766
